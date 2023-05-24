@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en" datatype="plaintext" original="file.ext">
+    <body>
+      <trans-unit id="label.actions">
+        <source>label.actions</source>
+        <target>Actions</target>
+      </trans-unit>
+      <trans-unit id="label.id">
+        <source>label.id</source>
+        <target>Id</target>
+      </trans-unit>
+      <trans-unit id="label.name">
+        <source>label.name</source>
+        <target>Name</target>
+      </trans-unit>
+      <trans-unit id="label.age">
+        <source>label.age</source>
+        <target>Age</target>
+      </trans-unit>
+      <trans-unit id="label.description">
+        <source>label.description</source>
+        <target>Description</target>
+      </trans-unit>
+      <trans-unit id="label.picture">
+         <source>label.picture</source>
+         <target>Picture</target>
+      </trans-unit>
+      <trans-unit id="label.sex">
+         <source>label.sex</source>
+         <target>Sex</target>
+      </trans-unit>
+      <trans-unit id="label.size">
+         <source>label.size</source>
+         <target>Size</target>
+      </trans-unit>
+      <trans-unit id="message.empty_list">
+        <source>message.empty_list</source>
+        <target>List is empty.</target>
+      </trans-unit>
+      <trans-unit id="message.record_not_found">
+        <source>message.record_not_found</source>
+        <target>Record not found.</target>
+      </trans-unit>
+      <trans-unit id="title.record_list">
+        <source>title.record_list</source>
+        <target>Records list</target>
+      </trans-unit>
+      <trans-unit id="title.record_view">
+        <source>title.record_view</source>
+        <target>Record view #%id%</target>
+      </trans-unit>
+      <trans-unit id="title.dog_list">
+         <source>title.dog_list</source>
+         <target>Dog list</target>
+      </trans-unit>
+      <trans-unit id="action.show">
+         <source>action.show</source>
+         <target>Show</target>
+      </trans-unit>
+      <trans-unit id="title.dog_details">
+         <source>title.dog_details</source>
+         <target>Dog details</target>
+      </trans-unit>
+      <trans-unit id="action.back_to_list">
+         <source>action.back_to_list</source>
+         <target>Back to list</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
