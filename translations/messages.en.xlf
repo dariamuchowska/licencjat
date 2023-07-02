@@ -14,6 +14,10 @@
         <source>label.name</source>
         <target>Name</target>
       </trans-unit>
+      <trans-unit id="label.breed">
+        <source>label.breed</source>
+        <target>Breed</target>
+      </trans-unit>
       <trans-unit id="label.age">
         <source>label.age</source>
         <target>Age</target>
@@ -21,18 +25,6 @@
       <trans-unit id="label.description">
         <source>label.description</source>
         <target>Description</target>
-      </trans-unit>
-      <trans-unit id="label.picture">
-         <source>label.picture</source>
-         <target>Picture</target>
-      </trans-unit>
-      <trans-unit id="label.sex">
-         <source>label.sex</source>
-         <target>Sex</target>
-      </trans-unit>
-      <trans-unit id="label.size">
-         <source>label.size</source>
-         <target>Size</target>
       </trans-unit>
       <trans-unit id="message.empty_list">
         <source>message.empty_list</source>
@@ -55,7 +47,7 @@
          <target>Dog list</target>
       </trans-unit>
       <trans-unit id="action.show">
-         <source>action.show</source>
+         <source>action.view</source>
          <target>Show</target>
       </trans-unit>
       <trans-unit id="title.dog_details">

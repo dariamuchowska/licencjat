@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ 'title.dog_list'|trans }}
+{% endblock %}
+
+{% block body %}
+    <h1>{{ 'title.dog_list'|trans }}</h1>
+    {% if pagination is defined and pagination.items|length %}
+
+        <div class="navigation text-center">
+            {{ knp_pagination_render(pagination) }}
+        </div>
+
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>{{ knp_pagination_sortable(pagination, 'label.name'|trans, 'dog.name') }}</th>
+                <th>{{ 'label.breed'|trans }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label.age'|trans, 'dog.age') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label.description'|trans, 'dog.description') }}</th>
+                <th>{{ 'label.actions'|trans }}</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for dog in pagination.items %}
+                <tr>
+                    <td>{{ dog.name }}</td>
+                    <td>{{ dog.breed.name }}</td>
+                    <td>{{ dog.age }}</td>
+                    <td>{{ dog.description }}</td>
+                    <td>
+                        <a href="{{ url('dog_show', {id: dog.id}) }}" title="{{ 'action.view'|trans }}">
+                            {{ 'action.view'|trans }}
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="navigation text-center">
+            {{ knp_pagination_render(pagination) }}
+        </div>
+
+    {% else %}
+        <p>
+            {{ 'message.empty_list'|trans }}
+        </p>
+    {% endif %}
+{% endblock %}

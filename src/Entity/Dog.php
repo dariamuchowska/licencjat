@@ -60,6 +60,15 @@ class Dog
     private ?string $photoFilename;
 
     /**
+     * Breed.
+     *
+     * @var Breed|null
+     */
+    #[ORM\ManyToOne(targetEntity: Breed::class, fetch: 'EXTRA_LAZY')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Breed $breed = null;
+
+    /**
      * Getter for id.
      *
      * @return int|null Id
@@ -147,5 +156,25 @@ class Dog
     public function setPhotoFilename(?string $photoFilename): void
     {
         $this->photoFilename = $photoFilename;
+    }
+
+    /**
+     * Getter for breed.
+     *
+     * @return Breed|null Breed
+     */
+    public function getBreed(): ?Breed
+    {
+        return $this->breed;
+    }
+
+    /**
+     * Setter for breed.
+     *
+     * @param Breed|null $breed Breed
+     */
+    public function setBreed(?Breed $breed): void
+    {
+        $this->breed = $breed;
     }
 }
