@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Dog entity.
  */
@@ -7,7 +6,6 @@
 namespace App\Entity;
 
 use App\Repository\DogRepository;
-use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -30,57 +28,41 @@ class Dog
     private ?int $id = null;
 
     /**
-    * Name.
-    *
-    * @var string|null
+     * Name.
+     *
+     * @var string|null Name
      */
-    #[ORM\Column(type: 'string', length: 100, nullable: true)]
-    private ?string $name = null;
+    #[ORM\Column(type: 'string', length: 100)]
+    private ?string $name;
 
     /**
      * Age.
      *
-     * @var int|null
+     * @var int|null Age
      */
-    #[ORM\Column(type: 'integer', nullable: true)]
-    private ?int $age = null;
+    #[ORM\Column(type: 'integer')]
+    private ?int $age;
 
     /**
      * Description.
      *
-     * @var string|null
+     * @var string|null Description
      */
-    #[ORM\Column(type: Types::TEXT)]
-    private ?string $description = null;
+    #[ORM\Column(type: 'string', length: 500)]
+    private ?string $description;
 
     /**
-     * Picture.
+     * Dog's photo filename.
      *
-     * @var null
+     * @var string|null photoFilename
      */
-    #[ORM\Column(type: Types::BLOB, nullable: true)]
-    private $picture = null;
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private ?string $photoFilename;
 
     /**
-     * Sex.
+     * Getter for id.
      *
-     * @var string|null
-     */
-    #[ORM\Column(type: 'string', length: 100, nullable: true)]
-    private ?string $sex = null;
-
-    /**
-     * Size.
-     *
-     * @var string|null
-     */
-    #[ORM\Column(type: 'integer', length: 100, nullable: true)]
-    private ?string $size = null;
-
-    /**
-     * Getter for ID.
-     *
-     * @return int|null ID
+     * @return int|null Id
      */
     public function getId(): ?int
     {
@@ -88,7 +70,7 @@ class Dog
     }
 
     /**
-     * Getter for Name.
+     * Getter for name.
      *
      * @return string|null Name
      */
@@ -98,17 +80,17 @@ class Dog
     }
 
     /**
-     * Setter for Name.
+     * Setter for name.
      *
      * @param string|null $name Name
      */
-    public function setName(?string $name): void
+    public function setName(string $name): void
     {
         $this->name = $name;
     }
 
     /**
-     * Getter for Age.
+     * Getter for age.
      *
      * @return int|null Age
      */
@@ -118,17 +100,17 @@ class Dog
     }
 
     /**
-     * Setter for Age.
+     * Setter for age.
      *
      * @param int|null $age Age
      */
-    public function setAge(?int $age): void
+    public function setAge(int $age): void
     {
         $this->age = $age;
     }
 
     /**
-     * Getter for Description.
+     * Getter for description.
      *
      * @return string|null Description
      */
@@ -138,9 +120,9 @@ class Dog
     }
 
     /**
-     * Setter for Description.
+     * Setter for description.
      *
-     * @param string $description Description
+     * @param string|null $description Description
      */
     public function setDescription(string $description): void
     {
@@ -148,62 +130,22 @@ class Dog
     }
 
     /**
-     * Getter for Picture.
+     * Getter for photo Filename.
      *
-     * @return null Picture.
+     * @return string|null Photo filename
      */
-    public function getPicture()
+    public function getPhotoFilename(): ?string
     {
-        return $this->picture;
+        return $this->photoFilename;
     }
 
     /**
-     * Setter for Picture.
+     * Setter for Photo filename.
      *
-     * @param $picture Picture
+     * @param string|null $photoFilename Photo filename
      */
-    public function setPicture($picture): void
+    public function setPhotoFilename(?string $photoFilename): void
     {
-        $this->picture = $picture;
-    }
-
-    /**
-     * Getter for Sex.
-     *
-     * @return string|null Sex
-     */
-    public function getSex(): ?string
-    {
-        return $this->sex;
-    }
-
-    /**
-     * Setter for Sex.
-     *
-     * @param string|null $sex Sex
-     */
-    public function setSex(?string $sex): void
-    {
-        $this->sex = $sex;
-    }
-
-    /**
-     * Getter for Size.
-     *
-     * @return string|null Size
-     */
-    public function getSize(): ?string
-    {
-        return $this->size;
-    }
-
-    /**
-     * Setter for Size.
-     *
-     * @param string|null $size Size
-     */
-    public function setSize(?string $size): void
-    {
-        $this->size = $size;
+        $this->photoFilename = $photoFilename;
     }
 }
