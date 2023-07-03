@@ -24,6 +24,19 @@ class GenderRepository extends ServiceEntityRepository
         parent::__construct($registry, Gender::class);
     }
 
+    /**
+     * Query all records.
+     *
+     * @return \Doctrine\ORM\QueryBuilder Query builder
+     */
+    public function queryAll(): QueryBuilder
+    {
+        return $this->getOrCreateQueryBuilder()
+            ->select('gender', 'partial dogs.{id}')
+            ->join('gender.dogs', 'dogs')
+            ->orderBy('gender.id', 'ASC');
+    }
+
     public function save(Gender $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);

@@ -48,12 +48,21 @@ class DogRepository extends ServiceEntityRepository
     /**
      * Query all records.
      *
-     * @return QueryBuilder Query builder
+     * @return \Doctrine\ORM\QueryBuilder Query builder
      */
     public function queryAll(): QueryBuilder
     {
         return $this->getOrCreateQueryBuilder()
-            ->orderBy('dog.name', 'ASC');
+            ->select(
+                'partial dog.{id, name, age, description}',
+                'partial breed.{id, name}',
+                'partial size.{id, name}',
+                'partial gender.{id, name}'
+            )
+            ->join('dog.breed', 'breed')
+            ->join('dog.size', 'size')
+            ->join('dog.gender', 'gender')
+            ->orderBy('dog.id', 'ASC');
     }
 
     /**

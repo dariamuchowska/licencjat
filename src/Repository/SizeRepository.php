@@ -21,6 +21,19 @@ class SizeRepository extends ServiceEntityRepository
         parent::__construct($registry, Size::class);
     }
 
+    /**
+     * Query all records.
+     *
+     * @return \Doctrine\ORM\QueryBuilder Query builder
+     */
+    public function queryAll(): QueryBuilder
+    {
+        return $this->getOrCreateQueryBuilder()
+            ->select('size', 'partial dogs.{id}')
+            ->join('size.dogs', 'dogs')
+            ->orderBy('size.id', 'ASC');
+    }
+
     public function save(Size $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);

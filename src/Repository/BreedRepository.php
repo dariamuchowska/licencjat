@@ -24,6 +24,19 @@ class BreedRepository extends ServiceEntityRepository
         parent::__construct($registry, Breed::class);
     }
 
+    /**
+     * Query all records.
+     *
+     * @return \Doctrine\ORM\QueryBuilder Query builder
+     */
+    public function queryAll(): QueryBuilder
+    {
+        return $this->getOrCreateQueryBuilder()
+            ->select('breed', 'partial dogs.{id}')
+            ->join('breed.dogs', 'dogs')
+            ->orderBy('breed.id', 'ASC');
+    }
+
     public function save(Breed $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);

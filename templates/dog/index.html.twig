@@ -16,10 +16,10 @@
             <thead>
             <tr>
                 <th>{{ knp_pagination_sortable(pagination, 'label.name'|trans, 'dog.name') }}</th>
-                <th>{{ 'label.breed'|trans }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label.breed'|trans, 'breed.name') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label.age'|trans, 'dog.age') }}</th>
-                <th>{{ 'label.gender'|trans }}</th>
-                <th>{{ 'label.size'|trans }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label.gender'|trans, 'gender.name') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label.size'|trans, 'size.name') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label.description'|trans, 'dog.description') }}</th>
                 <th>{{ 'label.actions'|trans }}</th>
             </tr>
