@@ -18,6 +18,10 @@
         <source>label.age</source>
         <target>Wiek</target>
       </trans-unit>
+      <trans-unit id="label.gender">
+        <source>label.gender</source>
+        <target>Płeć</target>
+      </trans-unit>
       <trans-unit id="label.description">
         <source>label.description</source>
         <target>Opis</target>

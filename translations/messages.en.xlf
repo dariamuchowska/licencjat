@@ -22,6 +22,10 @@
         <source>label.age</source>
         <target>Age</target>
       </trans-unit>
+      <trans-unit id="label.gender">
+        <source>label.gender</source>
+        <target>Gender</target>
+      </trans-unit>
       <trans-unit id="label.description">
         <source>label.description</source>
         <target>Description</target>

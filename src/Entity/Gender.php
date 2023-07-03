@@ -1,22 +1,20 @@
 <?php
 /**
- * Breed entity.
+ * Gender entity.
  */
 
 namespace App\Entity;
 
-use App\Repository\BreedRepository;
+use App\Repository\GenderRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
- * Class Breed.
+ * Class Gender.
  */
-#[ORM\Entity(repositoryClass: BreedRepository::class)]
-#[ORM\Table(name: 'breeds')]
-#[ORM\UniqueConstraint(name: 'uq_breeds_name', columns: ['name'])]
-#[UniqueEntity(fields: ['name'])]
-class Breed
+#[ORM\Entity(repositoryClass: GenderRepository::class)]
+#[ORM\Table(name: 'genders')]
+class Gender
 {
     /**
      * Primary key.
@@ -59,10 +57,17 @@ class Breed
     /**
      * Setter for name.
      *
-     * @param string|null $name Name
+     * @param string $name Name
      */
-    public function setName(?string $name): void
+    public function setName(string $name): void
     {
         $this->name = $name;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function __toString() {
+        return $this->name;
     }
 }

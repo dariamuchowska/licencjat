@@ -1,4 +1,7 @@
 <?php
+/**
+ * Breed repository.
+ */
 
 namespace App\Repository;
 

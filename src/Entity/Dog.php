@@ -69,6 +69,15 @@ class Dog
     private ?Breed $breed = null;
 
     /**
+     * Gender.
+     *
+     * @var Gender|null
+     */
+    #[ORM\ManyToOne(targetEntity: Gender::class, fetch: 'EXTRA_LAZY')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Gender $gender = null;
+
+    /**
      * Getter for id.
      *
      * @return int|null Id
@@ -176,5 +185,25 @@ class Dog
     public function setBreed(?Breed $breed): void
     {
         $this->breed = $breed;
+    }
+
+    /**
+     * Getter for gender.
+     *
+     * @return Gender|null Gender
+     */
+    public function getGender(): ?Gender
+    {
+        return $this->gender;
+    }
+
+    /**
+     * Setter for gender.
+     *
+     * @param Gender|null $gender Gender
+     */
+    public function setGender(?Gender $gender): void
+    {
+        $this->gender = $gender;
     }
 }
