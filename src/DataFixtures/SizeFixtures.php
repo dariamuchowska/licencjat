@@ -1,18 +1,18 @@
 <?php
 /**
- * Gender fixtures.
+ * Size fixtures.
  */
 
 namespace App\DataFixtures;
 
-use App\Entity\Gender;
+use App\Entity\Size;
 
 /**
- * Class GenderFixtures.
+ * Class SizeFixtures.
  *
  * @psalm-suppress MissingConstructor
  */
-class GenderFixtures extends AbstractBaseFixtures
+class SizeFixtures extends AbstractBaseFixtures
 {
     /**
      * Load data.
@@ -22,10 +22,10 @@ class GenderFixtures extends AbstractBaseFixtures
      */
     public function loadData(): void
     {
-        $this->createMany(2, 'genders', function (int $i) {
-            $gender = new Gender();
-            $gender->setName($this->faker->unique()->word());
-            return $gender;
+        $this->createMany(3, 'sizes', function (int $i) {
+            $size = new Size();
+            $size->setName($this->faker->unique()->word());
+            return $size;
         });
 
         $this->manager->flush();

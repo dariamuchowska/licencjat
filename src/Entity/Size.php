@@ -1,22 +1,24 @@
 <?php
 /**
- * Gender entity.
+ * Size entity.
  */
 
 namespace App\Entity;
 
-use App\Repository\GenderRepository;
+use App\Repository\SizeRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
- * Class Gender.
+ * Class Size.
+ *
+ * @psalm-suppress MissingConstructor
  */
-#[ORM\Entity(repositoryClass: GenderRepository::class)]
-#[ORM\Table(name: 'genders')]
-#[ORM\UniqueConstraint(name: 'uq_genders_name', columns: ['name'])]
+#[ORM\Entity(repositoryClass: SizeRepository::class)]
+#[ORM\Table(name: 'sizes')]
+#[ORM\UniqueConstraint(name: 'uq_sizes_name', columns: ['name'])]
 #[UniqueEntity(fields: ['name'])]
-class Gender
+class Size
 {
     /**
      * Primary key.
@@ -34,10 +36,10 @@ class Gender
      * @var string|null
      */
     #[ORM\Column(type: 'string', length: 255)]
-    private ?string $name;
+    private ?string $name = null;
 
     /**
-     * Getter for id.
+     * Getter for Id.
      *
      * @return int|null Id
      */
@@ -57,7 +59,7 @@ class Gender
     }
 
     /**
-     * Setter for name.
+     * Setter for void.
      *
      * @param string $name Name
      */

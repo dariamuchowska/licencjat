@@ -19,6 +19,7 @@
                 <th>{{ 'label.breed'|trans }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label.age'|trans, 'dog.age') }}</th>
                 <th>{{ 'label.gender'|trans }}</th>
+                <th>{{ 'label.size'|trans }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label.description'|trans, 'dog.description') }}</th>
                 <th>{{ 'label.actions'|trans }}</th>
             </tr>
@@ -30,6 +31,7 @@
                     <td>{{ dog.breed.name }}</td>
                     <td>{{ dog.age }}</td>
                     <td>{{ dog.gender }}</td>
+                    <td>{{ dog.size }}</td>
                     <td>{{ dog.description }}</td>
                     <td>
                         <a href="{{ url('dog_show', {id: dog.id}) }}" title="{{ 'action.view'|trans }}">

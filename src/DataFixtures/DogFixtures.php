@@ -39,6 +39,9 @@ class DogFixtures extends AbstractBaseFixtures implements DependentFixtureInterf
             /** @var Gender $gender */
             $gender = $this->getRandomReference('genders');
             $dog->setGender($gender);
+            /** @var Size $size */
+            $size = $this->getRandomReference('sizes');
+            $dog->setSize($size);
 
             return $dog;
         });
@@ -52,10 +55,10 @@ class DogFixtures extends AbstractBaseFixtures implements DependentFixtureInterf
      *
      * @return string[] of dependencies
      *
-     * @psalm-return array{0: BreedFixtures::class, 1: GenderFixtures::class}
+     * @psalm-return array{0: BreedFixtures::class, 1: GenderFixtures::class, 2: SizeFixtures::class}
      */
     public function getDependencies(): array
     {
-        return [BreedFixtures::class, GenderFixtures::class];
+        return [BreedFixtures::class, GenderFixtures::class, SizeFixtures::class];
     }
 }

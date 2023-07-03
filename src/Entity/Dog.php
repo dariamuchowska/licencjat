@@ -78,6 +78,15 @@ class Dog
     private ?Gender $gender = null;
 
     /**
+     * Size.
+     *
+     * @var Size|null
+     */
+    #[ORM\ManyToOne(targetEntity: Size::class, fetch: 'EXTRA_LAZY')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Size $size = null;
+
+    /**
      * Getter for id.
      *
      * @return int|null Id
@@ -205,5 +214,25 @@ class Dog
     public function setGender(?Gender $gender): void
     {
         $this->gender = $gender;
+    }
+
+    /**
+     * Getter for size.
+     *
+     * @return Size|null Size
+     */
+    public function getSize(): ?Size
+    {
+        return $this->size;
+    }
+
+    /**
+     * Setter for size.
+     *
+     * @param Size|null $size Size
+     */
+    public function setSize(?Size $size): void
+    {
+        $this->size = $size;
     }
 }
