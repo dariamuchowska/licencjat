@@ -6,12 +6,12 @@
 namespace App\Controller;
 
 use App\Entity\Dog;
-use App\Repository\DogRepository;
+use App\Service\DogService;
+use App\Service\DogServiceInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Knp\Component\Pager\PaginatorInterface;
 
 /**
  * Class DogController.
@@ -20,24 +20,36 @@ use Knp\Component\Pager\PaginatorInterface;
 class DogController extends AbstractController
 {
     /**
+     * Dog service.
+     */
+    private DogServiceInterface $dogService;
+
+    /**
+     * Constructor.
+     */
+    public function __construct(DogServiceInterface $dogService)
+    {
+        $this->dogService = $dogService;
+    }
+
+    /**
      * Index action.
      *
-     * @param Request            $request        HTTP Request
-     * @param DogRepository      $dogRepository Dog repository
-     * @param PaginatorInterface $paginator      Paginator
+     * @param Request $request HTTP Request
      *
      * @return Response HTTP response
      */
     #[Route(name: 'dog_index', methods: 'GET')]
-    public function index(Request $request, DogRepository $dogRepository, PaginatorInterface $paginator): Response
+    public function index(Request $request): Response
     {
-        $pagination = $paginator->paginate(
-            $dogRepository->queryAll(),
-            $request->query->getInt('page', 1),
-            DogRepository::PAGINATOR_ITEMS_PER_PAGE
+        $pagination = $this->dogService->getPaginatedList(
+            $request->query->getInt('page', 1)
         );
 
-        return $this->render('dog/index.html.twig', ['pagination' => $pagination]);
+        return $this->render(
+            'dog/index.html.twig',
+            ['pagination' => $pagination]
+        );
     }
 
     /**
@@ -51,7 +63,7 @@ class DogController extends AbstractController
         '/{id}',
         name: 'dog_show',
         requirements: ['id' => '[1-9]\d*'],
-        methods: 'GET',
+        methods: 'GET'
     )]
     public function show(Dog $dog): Response
     {

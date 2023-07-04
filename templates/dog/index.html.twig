@@ -34,7 +34,7 @@
                     <td>{{ dog.size }}</td>
                     <td>{{ dog.description }}</td>
                     <td>
-                        <a href="{{ url('dog_show', {id: dog.id}) }}" title="{{ 'action.view'|trans }}">
+                        <a class="btn btn-outline-primary" href="{{ url('dog_show', {id: dog.id}) }}" title="{{ 'action.view'|trans }}">
                             {{ 'action.view'|trans }}
                         </a>
                     </td>
