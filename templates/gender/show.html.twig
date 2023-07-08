@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ 'title.gender_details'|trans({'%id%': gender.id|default('')}) }}
+{% endblock %}
+
+{% block body %}
+    <h1>{{ 'title.gender_details'|trans({'%id%': gender.id|default('')}) }}</h1>
+    {% if gender is defined and gender|length %}
+        <dl class="dl-horizontal">
+            <dt>{{ 'label.id'|trans }}</dt>
+            <dd>{{ gender.id }}</dd>
+            <dt>{{ 'label.gender_name'|trans }}</dt>
+            <dd>{{  gender.name }}</dd>
+        </dl>
+        <p>
+            <a href="{{ url('gender_index') }}" title="{{ 'action.back_to_list'|trans }}">
+                {{ 'action.back_to_list'|trans }}
+            </a>
+        </p>
+    {% else %}
+        <p>
+            {{ 'message.record_not_found'|trans }}
+        </p>
+    {% endif %}
+{% endblock %}

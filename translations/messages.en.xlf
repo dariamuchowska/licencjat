@@ -66,6 +66,42 @@
          <source>action.back_to_list</source>
          <target>Back to list</target>
       </trans-unit>
+      <trans-unit id="title.breed_list">
+        <source>title.breed_list</source>
+        <target>Breeds</target>
+      </trans-unit>
+      <trans-unit id="label.breed_name">
+        <source>label.breed_name</source>
+        <target>Breed name</target>
+      </trans-unit>
+      <trans-unit id="title.breed_details">
+        <source>title.breed_details</source>
+        <target>Breed details</target>
+      </trans-unit>
+      <trans-unit id="title.gender_list">
+        <source>title.gender_list</source>
+        <target>Genders</target>
+      </trans-unit>
+      <trans-unit id="label.gender_name">
+        <source>label.gender_name</source>
+        <target>Gender</target>
+      </trans-unit>
+      <trans-unit id="title.gender_details">
+        <source>title.gender_details</source>
+        <target>Gender details</target>
+      </trans-unit>
+      <trans-unit id="title.size_list">
+        <source>title.size_list</source>
+        <target>Sizes</target>
+      </trans-unit>
+      <trans-unit id="label.size_name">
+        <source>label.size_name</source>
+        <target>Size</target>
+      </trans-unit>
+      <trans-unit id="title.size_details">
+        <source>title.size_details</source>
+        <target>Size details</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

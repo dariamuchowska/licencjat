@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ 'title.size_details'|trans({'%id%': size.id|default('')}) }}
+{% endblock %}
+
+{% block body %}
+    <h1>{{ 'title.size_details'|trans({'%id%': size.id|default('')}) }}</h1>
+    {% if size is defined and size|length %}
+        <dl class="dl-horizontal">
+            <dt>{{ 'label.id'|trans }}</dt>
+            <dd>{{ size.id }}</dd>
+            <dt>{{ 'label.size_name'|trans }}</dt>
+            <dd>{{  size.name }}</dd>
+        </dl>
+        <p>
+            <a href="{{ url('size_index') }}" title="{{ 'action.back_to_list'|trans }}">
+                {{ 'action.back_to_list'|trans }}
+            </a>
+        </p>
+    {% else %}
+        <p>
+            {{ 'message.record_not_found'|trans }}
+        </p>
+    {% endif %}
+{% endblock %}

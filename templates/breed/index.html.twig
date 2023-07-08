@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ 'title.breed_list'|trans }}
+{% endblock %}
+
+{% block body %}
+    <h1>{{ 'title.breed_list'|trans }}</h1>
+
+    {% if pagination is defined and pagination.items|length %}
+
+        <div class="navigation text-center">
+            {{ knp_pagination_render(pagination) }}
+        </div>
+
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>{{ knp_pagination_sortable(pagination, 'label.id'|trans, 'breed.id') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label.breed_name'|trans, 'breed.name') }}</th>
+                <th>{{ 'label.actions'|trans }}</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for breed in pagination.items %}
+                <tr>
+                    <td>{{ breed.id }}</td>
+                    <td>{{ breed.name }}</td>
+                    <td>
+                        <a href="{{ url('breed_show', {id: breed.id}) }}" title="{{ 'action.view'|trans }}">
+                            {{ 'action.view'|trans }}
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="navigation text-center">
+            {{ knp_pagination_render(pagination) }}
+        </div>
+
+    {% else %}
+        <p>
+            {{ 'message.empty_list'|trans }}
+        </p>
+    {% endif %}
+{% endblock %}

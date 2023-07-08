@@ -2,6 +2,10 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
   <file source-language="en" datatype="plaintext" original="file.ext">
     <body>
+      <trans-unit id="label.id">
+        <source>label.id</source>
+        <target>Id</target>
+      </trans-unit>
       <trans-unit id="label.actions">
         <source>label.actions</source>
         <target>Akcje</target>
@@ -61,6 +65,42 @@
       <trans-unit id="action.back_to_list">
          <source>action.back_to_list</source>
          <target>Wróć do listy</target>
+      </trans-unit>
+      <trans-unit id="title.breed_list">
+        <source>title.breed_list</source>
+        <target>Rasy</target>
+      </trans-unit>
+      <trans-unit id="label.breed_name">
+        <source>label.breed_name</source>
+        <target>Rasa</target>
+      </trans-unit>
+      <trans-unit id="title.breed_details">
+        <source>title.breed_details</source>
+        <target>Informacje o rasie</target>
+      </trans-unit>
+      <trans-unit id="title.gender_list">
+        <source>title.gender_list</source>
+        <target>Płcie</target>
+      </trans-unit>
+      <trans-unit id="label.gender_name">
+        <source>label.gender_name</source>
+        <target>Płeć</target>
+      </trans-unit>
+      <trans-unit id="title.gender_details">
+        <source>title.gender_details</source>
+        <target>Informacje o płci</target>
+      </trans-unit>
+      <trans-unit id="title.size_list">
+        <source>title.size_list</source>
+        <target>Rozmiary</target>
+      </trans-unit>
+      <trans-unit id="label.size_name">
+        <source>label.size_name</source>
+        <target>Rozmiar</target>
+      </trans-unit>
+      <trans-unit id="title.size_details">
+        <source>title.size_details</source>
+        <target>Informacje o rozmiarze</target>
       </trans-unit>
     </body>
   </file>

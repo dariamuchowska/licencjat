@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ 'title.breed_details'|trans({'%id%': breed.id|default('')}) }}
+{% endblock %}
+
+{% block body %}
+    <h1>{{ 'title.breed_details'|trans({'%id%': breed.id|default('')}) }}</h1>
+    {% if breed is defined and breed|length %}
+        <dl class="dl-horizontal">
+            <dt>{{ 'label.id'|trans }}</dt>
+            <dd>{{ breed.id }}</dd>
+            <dt>{{ 'label.breed_name'|trans }}</dt>
+            <dd>{{  breed.name }}</dd>
+        </dl>
+        <p>
+            <a href="{{ url('breed_index') }}" title="{{ 'action.back_to_list'|trans }}">
+                {{ 'action.back_to_list'|trans }}
+            </a>
+        </p>
+    {% else %}
+        <p>
+            {{ 'message.record_not_found'|trans }}
+        </p>
+    {% endif %}
+{% endblock %}
