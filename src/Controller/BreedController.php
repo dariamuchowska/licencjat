@@ -6,12 +6,11 @@
 namespace App\Controller;
 
 use App\Entity\Breed;
-use App\Repository\BreedRepository;
+use App\Service\BreedServiceInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
-use Knp\Component\Pager\PaginatorInterface;
 
 /**
  * Class BreedController.
@@ -20,11 +19,22 @@ use Knp\Component\Pager\PaginatorInterface;
 class BreedController extends AbstractController
 {
     /**
+     * Breed service.
+     */
+    private BreedServiceInterface $breedService;
+
+    /**
+     * Constructor.
+     */
+    public function __construct(BreedServiceInterface $breedService)
+    {
+        $this->breedService = $breedService;
+    }
+
+    /**
      * Index action.
      *
-     * @param Request            $request         HTTP Request
-     * @param BreedRepository    $breedRepository Breed repository
-     * @param PaginatorInterface $paginator       Paginator
+     * @param Request $request HTTP Request
      *
      * @return Response HTTP response
      */
@@ -32,12 +42,10 @@ class BreedController extends AbstractController
         name: 'breed_index',
         methods: 'GET'
     )]
-    public function index(Request $request, BreedRepository $breedRepository, PaginatorInterface $paginator): Response
+    public function index(Request $request): Response
     {
-        $pagination = $paginator->paginate(
-            $breedRepository->queryAll(),
-            $request->query->getInt('page', 1),
-            BreedRepository::PAGINATOR_ITEMS_PER_PAGE
+        $pagination = $this->breedService->getPaginatedList(
+            $request->query->getInt('page', 1)
         );
 
         return $this->render(

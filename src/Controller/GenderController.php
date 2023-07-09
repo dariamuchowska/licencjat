@@ -6,12 +6,11 @@
 namespace App\Controller;
 
 use App\Entity\Gender;
-use App\Repository\GenderRepository;
+use App\Service\GenderServiceInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
-use Knp\Component\Pager\PaginatorInterface;
 
 /**
  * Class GenderController.
@@ -20,24 +19,33 @@ use Knp\Component\Pager\PaginatorInterface;
 class GenderController extends AbstractController
 {
     /**
+     * Gender service.
+     */
+    private GenderServiceInterface $genderService;
+
+    /**
+     * Constructor.
+     */
+    public function __construct(GenderServiceInterface $genderService)
+    {
+        $this->genderService = $genderService;
+    }
+
+    /**
      * Index action.
      *
-     * @param Request            $request          HTTP Request
-     * @param GenderRepository   $genderRepository Gender repository
-     * @param PaginatorInterface $paginator        Paginator
-     *
+     * @param Request $request HTTP Request
+
      * @return Response HTTP response
      */
     #[Route(
         name: 'gender_index',
         methods: 'GET'
     )]
-    public function index(Request $request, GenderRepository $genderRepository, PaginatorInterface $paginator): Response
+    public function index(Request $request): Response
     {
-        $pagination = $paginator->paginate(
-            $genderRepository->queryAll(),
-            $request->query->getInt('page', 1),
-            GenderRepository::PAGINATOR_ITEMS_PER_PAGE
+        $pagination = $this->genderService->getPaginatedList(
+            $request->query->getInt('page', 1)
         );
 
         return $this->render(

@@ -6,12 +6,11 @@
 namespace App\Controller;
 
 use App\Entity\Size;
-use App\Repository\SizeRepository;
+use App\Service\SizeServiceInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
-use Knp\Component\Pager\PaginatorInterface;
 
 /**
  * Class SizeController.
@@ -20,11 +19,22 @@ use Knp\Component\Pager\PaginatorInterface;
 class SizeController extends AbstractController
 {
     /**
+     * Size service.
+     */
+    private SizeServiceInterface $sizeService;
+
+    /**
+     * Constructor.
+     */
+    public function __construct(SizeServiceInterface $sizeService)
+    {
+        $this->sizeService = $sizeService;
+    }
+
+    /**
      * Index action.
      *
-     * @param Request            $request        HTTP Request
-     * @param SizeRepository     $sizeRepository Size repository
-     * @param PaginatorInterface $paginator      Paginator
+     * @param Request $request HTTP Request
      *
      * @return Response HTTP response
      */
@@ -32,12 +42,10 @@ class SizeController extends AbstractController
         name: 'size_index',
         methods: 'GET'
     )]
-    public function index(Request $request, SizeRepository $sizeRepository, PaginatorInterface $paginator): Response
+    public function index(Request $request): Response
     {
-        $pagination = $paginator->paginate(
-            $sizeRepository->queryAll(),
-            $request->query->getInt('page', 1),
-            SizeRepository::PAGINATOR_ITEMS_PER_PAGE
+        $pagination = $this->sizeService->getPaginatedList(
+            $request->query->getInt('page', 1)
         );
 
         return $this->render(
