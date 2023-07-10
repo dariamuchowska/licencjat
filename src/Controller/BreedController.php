@@ -12,6 +12,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * Class BreedController.
@@ -25,11 +26,20 @@ class BreedController extends AbstractController
     private BreedServiceInterface $breedService;
 
     /**
-     * Constructor.
+     * Translator.
      */
-    public function __construct(BreedServiceInterface $breedService)
+    private TranslatorInterface $translator;
+
+    /**
+     * Constructor.
+     *
+     * @param BreedServiceInterface $breedService Breed service
+     * @param TranslatorInterface   $translator   Translator
+     */
+    public function __construct(BreedServiceInterface $breedService, TranslatorInterface $translator)
     {
         $this->breedService = $breedService;
+        $this->translator = $translator;
     }
 
     /**
@@ -99,6 +109,11 @@ class BreedController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->breedService->save($breed);
+
+            $this->addFlash(
+                'success',
+                $this->translator->trans('message.breed_created_successfully')
+            );
 
             return $this->redirectToRoute('breed_index');
         }

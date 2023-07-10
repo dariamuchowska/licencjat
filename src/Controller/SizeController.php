@@ -12,6 +12,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * Class SizeController.
@@ -25,11 +26,20 @@ class SizeController extends AbstractController
     private SizeServiceInterface $sizeService;
 
     /**
-     * Constructor.
+     * Translator.
      */
-    public function __construct(SizeServiceInterface $sizeService)
+    private TranslatorInterface $translator;
+
+    /**
+     * Constructor.
+     *
+     * @param SizeServiceInterface $sizeService Size service
+     * @param TranslatorInterface  $translator  Translator
+     */
+    public function __construct(SizeServiceInterface $sizeService, TranslatorInterface $translator)
     {
         $this->sizeService = $sizeService;
+        $this->translator = $translator;
     }
 
     /**
@@ -96,6 +106,11 @@ class SizeController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->sizeService->save($size);
+
+            $this->addFlash(
+                'success',
+                $this->translator->trans('message.size_created_successfully')
+            );
 
             return $this->redirectToRoute('size_index');
         }

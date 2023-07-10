@@ -126,6 +126,22 @@
         <source>label.none</source>
         <target>none</target>
       </trans-unit>
+      <trans-unit id="message.dog_created_successfully">
+        <source>message.dog_created_successfully</source>
+        <target>Your dog is now looking for a new home!</target>
+      </trans-unit>
+      <trans-unit id="message.breed_created_successfully">
+        <source>message.breed_created_successfully</source>
+        <target>Breed created successfully!</target>
+      </trans-unit>
+      <trans-unit id="message.gender_created_successfully">
+        <source>message.gender_created_successfully</source>
+        <target>Gender created successfully!</target>
+      </trans-unit>
+      <trans-unit id="message.size_created_successfully">
+        <source>message.size_created_successfully</source>
+        <target>Size created successfully!</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

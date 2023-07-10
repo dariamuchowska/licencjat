@@ -12,6 +12,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * Class GenderController.
@@ -25,11 +26,20 @@ class GenderController extends AbstractController
     private GenderServiceInterface $genderService;
 
     /**
-     * Constructor.
+     * Translator.
      */
-    public function __construct(GenderServiceInterface $genderService)
+    private TranslatorInterface $translator;
+
+    /**
+     * Constructor.
+     *
+     * @param GenderServiceInterface $genderService Gender service
+     * @param TranslatorInterface    $translator    Translator
+     */
+    public function __construct(GenderServiceInterface $genderService, TranslatorInterface $translator)
     {
         $this->genderService = $genderService;
+        $this->translator = $translator;
     }
 
     /**
@@ -99,6 +109,11 @@ class GenderController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->genderService->save($gender);
+
+            $this->addFlash(
+                'success',
+                $this->translator->trans('message.gender_created_successfully')
+            );
 
             return $this->redirectToRoute('gender_index');
         }

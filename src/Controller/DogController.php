@@ -13,6 +13,7 @@ use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * Class DogController.
@@ -26,11 +27,21 @@ class DogController extends AbstractController
     private DogServiceInterface $dogService;
 
     /**
-     * Constructor.
+     * Translator.
      */
-    public function __construct(DogServiceInterface $dogService)
+    private TranslatorInterface $translator;
+
+
+    /**
+     * Constructor.
+     *
+     * @param DogServiceInterface $dogService Dog service
+     * @param TranslatorInterface $translator Translator
+     */
+    public function __construct(DogServiceInterface $dogService, TranslatorInterface $translator)
     {
         $this->dogService = $dogService;
+        $this->translator = $translator;
     }
 
     /**
@@ -97,6 +108,11 @@ class DogController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->dogService->save($dog);
+
+            $this->addFlash(
+                'success',
+                $this->translator->trans('message.dog_created_successfully')
+            );
 
             return $this->redirectToRoute('dog_index');
         }
