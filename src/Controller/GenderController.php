@@ -123,4 +123,92 @@ class GenderController extends AbstractController
             ['form' => $form->createView()]
         );
     }
+
+    /**
+     * Edit action.
+     *
+     * @param Request  $request  HTTP request
+     * @param Gender   $gender   Gender entity
+     *
+     * @return Response HTTP response
+     */
+    #[Route(
+        '/{id}/edit',
+        name: 'gender_edit',
+        requirements: ['id' => '[1-9]\d*'],
+        methods: 'GET|PUT'
+    )]
+    public function edit(Request $request, Gender $gender): Response
+    {
+        $form = $this->createForm(
+            GenderType::class,
+            $gender,
+            [
+                'method' => 'PUT',
+                'action' => $this->generateUrl('gender_edit', ['id' => $gender->getId()]),
+            ]
+        );
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->genderService->save($gender);
+
+            $this->addFlash(
+                'success',
+                $this->translator->trans('message.edited_successfully')
+            );
+
+            return $this->redirectToRoute('gender_index');
+        }
+
+        return $this->render(
+            'gender/edit.html.twig',
+            [
+                'form' => $form->createView(),
+                'gender' => $gender,
+            ]
+        );
+    }
+
+    /**
+     * Delete action.
+     *
+     * @param Request  $request  HTTP request
+     * @param Gender   $gender   Gender entity
+     *
+     * @return Response HTTP response
+     */
+    #[Route(
+        '/{id}/delete',
+        name: 'gender_delete',
+        requirements: ['id' => '[1-9]\d*'],
+        methods: 'GET|DELETE'
+    )]
+    public function delete(Request $request, Gender $gender): Response
+    {
+        $form = $this->createForm(GenderType::class, $gender, [
+            'method' => 'DELETE',
+            'action' => $this->generateUrl('gender_delete', ['id' => $gender->getId()]),
+        ]);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->genderService->delete($gender);
+
+            $this->addFlash(
+                'success',
+                $this->translator->trans('message.deleted_successfully')
+            );
+
+            return $this->redirectToRoute('gender_index');
+        }
+
+        return $this->render(
+            'gender/delete.html.twig',
+            [
+                'form' => $form->createView(),
+                'gender' => $gender,
+            ]
+        );
+    }
 }

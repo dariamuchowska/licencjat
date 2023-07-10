@@ -76,4 +76,14 @@ class DogService implements DogServiceInterface
     {
         $this->dogRepository->save($dog);
     }
+
+    /**
+     * Delete entity.
+     *
+     * @param Dog $dog Dog entity
+     */
+    public function delete(Dog $dog): void
+    {
+        $this->dogRepository->delete($dog);
+    }
 }

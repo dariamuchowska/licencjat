@@ -40,4 +40,11 @@ interface BreedServiceInterface
      */
     public function save(Breed $breed): void;
 
+    /**
+     * Delete entity.
+     *
+     * @param Breed $breed Breed entity
+     */
+    public function delete(Breed $breed): void;
+
 }

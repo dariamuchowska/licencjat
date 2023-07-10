@@ -80,4 +80,15 @@ class GenderRepository extends ServiceEntityRepository
         $this->_em->flush();
     }
 
+    /**
+     * Delete entity.
+     *
+     * @param Gender $gender Gender entity
+     */
+    public function delete(Gender $gender): void
+    {
+        $this->_em->remove($gender);
+        $this->_em->flush();
+    }
+
 }

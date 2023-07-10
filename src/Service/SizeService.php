@@ -76,4 +76,14 @@ class SizeService implements SizeServiceInterface
     {
         $this->sizeRepository->save($size);
     }
+
+    /**
+     * Delete entity.
+     *
+     * @param Size $size Size entity
+     */
+    public function delete(Size $size): void
+    {
+        $this->sizeRepository->delete($size);
+    }
 }

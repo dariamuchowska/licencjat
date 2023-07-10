@@ -39,4 +39,11 @@ interface SizeServiceInterface
      * @param Size $size Size entity
      */
     public function save(Size $size): void;
+
+    /**
+     * Delete entity.
+     *
+     * @param Size $size Size entity
+     */
+    public function delete(Size $size): void;
 }

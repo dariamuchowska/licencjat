@@ -28,4 +28,11 @@ interface DogServiceInterface
      * @param Dog $dog Dog entity
      */
     public function save(Dog $dog): void;
+
+    /**
+     * Delete entity.
+     *
+     * @param Dog $dog Dog entity
+     */
+    public function delete(Dog $dog): void;
 }

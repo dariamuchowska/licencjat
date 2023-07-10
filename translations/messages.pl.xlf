@@ -142,6 +142,54 @@
         <source>message.size_created_successfully</source>
         <target>Dodano rozmiar!</target>
       </trans-unit>
+      <trans-unit id="message.dog_edited_successfully">
+        <source>message.dog_edited_successfully</source>
+        <target>Informacje o piesku zostały zaktualizowane.</target>
+      </trans-unit>
+      <trans-unit id="message.edited_successfully">
+        <source>message.edited_successfully</source>
+        <target>Informacje zostały zaktualizowane.</target>
+      </trans-unit>
+      <trans-unit id="title.dog_edit">
+        <source>title.dog_edit</source>
+        <target>Edytuj informacje o piesku</target>
+      </trans-unit>
+      <trans-unit id="title.breed_edit">
+        <source>title.breed_edit</source>
+        <target>Edytuj rasę</target>
+      </trans-unit>
+      <trans-unit id="title.size_edit">
+        <source>title.size_edit</source>
+        <target>Edytuj rozmiar</target>
+      </trans-unit>
+      <trans-unit id="title.gender_edit">
+        <source>title.gender_edit</source>
+        <target>Edytuj płeć</target>
+      </trans-unit>
+      <trans-unit id="action.delete">
+        <source>action.delete</source>
+        <target>Usuń</target>
+      </trans-unit>
+      <trans-unit id="title.dog_delete">
+        <source>title.dog_delete</source>
+        <target>Usuń pieska</target>
+      </trans-unit>
+      <trans-unit id="title.breed_delete">
+        <source>title.breed_delete</source>
+        <target>Usuń rasę</target>
+      </trans-unit>
+      <trans-unit id="title.gender_delete">
+        <source>title.gender_delete</source>
+        <target>Usuń płeć</target>
+      </trans-unit>
+      <trans-unit id="title.size_delete">
+        <source>title.size_delete</source>
+        <target>Usuń rozmiar</target>
+      </trans-unit>
+      <trans-unit id="message.deleted_successfully">
+        <source>message.deleted_successfully</source>
+        <target>Usunięto z powodzeniem!</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

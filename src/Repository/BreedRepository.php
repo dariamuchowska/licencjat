@@ -79,4 +79,15 @@ class BreedRepository extends ServiceEntityRepository
         $this->_em->persist($breed);
         $this->_em->flush();
     }
+
+    /**
+     * Delete entity.
+     *
+     * @param Breed $breed Breed entity
+     */
+    public function delete(Breed $breed): void
+    {
+        $this->_em->remove($breed);
+        $this->_em->flush();
+    }
 }

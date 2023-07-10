@@ -40,4 +40,11 @@ interface GenderServiceInterface
      */
     public function save(Gender $gender): void;
 
+    /**
+     * Delete entity.
+     *
+     * @param Gender $gender Gender entity
+     */
+    public function delete(Gender $gender): void;
+
 }

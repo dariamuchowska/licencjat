@@ -76,4 +76,14 @@ class GenderService implements GenderServiceInterface
     {
         $this->genderRepository->save($gender);
     }
+
+    /**
+     * Delete entity.
+     *
+     * @param Gender $gender Gender entity
+     */
+    public function delete(Gender $gender): void
+    {
+        $this->genderRepository->delete($gender);
+    }
 }

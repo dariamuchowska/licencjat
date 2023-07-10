@@ -123,4 +123,92 @@ class BreedController extends AbstractController
             ['form' => $form->createView()]
         );
     }
+
+    /**
+     * Edit action.
+     *
+     * @param Request  $request  HTTP request
+     * @param Breed    $breed    Breed entity
+     *
+     * @return Response HTTP response
+     */
+    #[Route(
+        '/{id}/edit',
+        name: 'breed_edit',
+        requirements: ['id' => '[1-9]\d*'],
+        methods: 'GET|PUT'
+    )]
+    public function edit(Request $request, Breed $breed): Response
+    {
+        $form = $this->createForm(
+            BreedType::class,
+            $breed,
+            [
+                'method' => 'PUT',
+                'action' => $this->generateUrl('breed_edit', ['id' => $breed->getId()]),
+            ]
+        );
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->breedService->save($breed);
+
+            $this->addFlash(
+                'success',
+                $this->translator->trans('message.edited_successfully')
+            );
+
+            return $this->redirectToRoute('breed_index');
+        }
+
+        return $this->render(
+            'breed/edit.html.twig',
+            [
+                'form' => $form->createView(),
+                'breed' => $breed,
+            ]
+        );
+    }
+
+    /**
+     * Delete action.
+     *
+     * @param Request  $request  HTTP request
+     * @param Breed    $breed    Breed entity
+     *
+     * @return Response HTTP response
+     */
+    #[Route(
+        '/{id}/delete',
+        name: 'breed_delete',
+        requirements: ['id' => '[1-9]\d*'],
+        methods: 'GET|DELETE'
+    )]
+    public function delete(Request $request, Breed $breed): Response
+    {
+        $form = $this->createForm(BreedType::class, $breed, [
+            'method' => 'DELETE',
+            'action' => $this->generateUrl('breed_delete', ['id' => $breed->getId()]),
+        ]);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->breedService->delete($breed);
+
+            $this->addFlash(
+                'success',
+                $this->translator->trans('message.deleted_successfully')
+            );
+
+            return $this->redirectToRoute('breed_index');
+        }
+
+        return $this->render(
+            'breed/delete.html.twig',
+            [
+                'form' => $form->createView(),
+                'breed' => $breed,
+            ]
+        );
+    }
 }

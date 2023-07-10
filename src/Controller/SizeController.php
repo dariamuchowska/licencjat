@@ -120,4 +120,92 @@ class SizeController extends AbstractController
             ['form' => $form->createView()]
         );
     }
+
+    /**
+     * Edit action.
+     *
+     * @param Request  $request  HTTP request
+     * @param Size     $size     Size entity
+     *
+     * @return Response HTTP response
+     */
+    #[Route(
+        '/{id}/edit',
+        name: 'size_edit',
+        requirements: ['id' => '[1-9]\d*'],
+        methods: 'GET|PUT'
+    )]
+    public function edit(Request $request, Size $size): Response
+    {
+        $form = $this->createForm(
+            SizeType::class,
+            $size,
+            [
+                'method' => 'PUT',
+                'action' => $this->generateUrl('size_edit', ['id' => $size->getId()]),
+            ]
+        );
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->sizeService->save($size);
+
+            $this->addFlash(
+                'success',
+                $this->translator->trans('message.edited_successfully')
+            );
+
+            return $this->redirectToRoute('size_index');
+        }
+
+        return $this->render(
+            'size/edit.html.twig',
+            [
+                'form' => $form->createView(),
+                'size' => $size,
+            ]
+        );
+    }
+
+    /**
+     * Delete action.
+     *
+     * @param Request  $request  HTTP request
+     * @param Size    $size    Size entity
+     *
+     * @return Response HTTP response
+     */
+    #[Route(
+        '/{id}/delete',
+        name: 'size_delete',
+        requirements: ['id' => '[1-9]\d*'],
+        methods: 'GET|DELETE'
+    )]
+    public function delete(Request $request, Size $size): Response
+    {
+        $form = $this->createForm(SizeType::class, $size, [
+            'method' => 'DELETE',
+            'action' => $this->generateUrl('size_delete', ['id' => $size->getId()]),
+        ]);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->sizeService->delete($size);
+
+            $this->addFlash(
+                'success',
+                $this->translator->trans('message.deleted_successfully')
+            );
+
+            return $this->redirectToRoute('size_index');
+        }
+
+        return $this->render(
+            'size/delete.html.twig',
+            [
+                'form' => $form->createView(),
+                'size' => $size,
+            ]
+        );
+    }
 }

@@ -80,4 +80,14 @@ class SizeRepository extends ServiceEntityRepository
         $this->_em->flush();
     }
 
+    /**
+     * Delete entity.
+     *
+     * @param Size $size Size entity
+     */
+    public function delete(Size $size): void
+    {
+        $this->_em->remove($size);
+        $this->_em->flush();
+    }
 }

@@ -76,4 +76,14 @@ class BreedService implements BreedServiceInterface
     {
         $this->breedRepository->save($breed);
     }
+
+    /**
+     * Delete entity.
+     *
+     * @param Breed $breed Breed entity
+     */
+    public function delete(Breed $breed): void
+    {
+        $this->breedRepository->delete($breed);
+    }
 }
