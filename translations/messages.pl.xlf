@@ -102,6 +102,30 @@
         <source>title.size_details</source>
         <target>Informacje o rozmiarze</target>
       </trans-unit>
+      <trans-unit id="title.breed_create">
+        <source>title.breed_create</source>
+        <target>Dodaj nową rasę</target>
+      </trans-unit>
+      <trans-unit id="title.gender_create">
+        <source>title.gender_create</source>
+        <target>Dodaj nową płeć</target>
+      </trans-unit>
+      <trans-unit id="title.size_create">
+        <source>title.size_create</source>
+        <target>Dodaj nowy rozmiar</target>
+      </trans-unit>
+      <trans-unit id="action.save">
+        <source>action.save</source>
+        <target>Zapisz</target>
+      </trans-unit>
+      <trans-unit id="title.dog_create">
+        <source>title.dog_create</source>
+        <target>Jaki psiak szuka domu?</target>
+      </trans-unit>
+      <trans-unit id="label.none">
+        <source>label.none</source>
+        <target>brak</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

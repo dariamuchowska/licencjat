@@ -7,6 +7,8 @@ namespace App\Repository;
 
 use App\Entity\Gender;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\ORM\NoResultException;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -19,8 +21,6 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method Gender[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  *
  * @extends ServiceEntityRepository<Gender>
- *
- * @psalm-suppress LessSpecificImplementedReturnType
  */
 class GenderRepository extends ServiceEntityRepository
 {
@@ -53,6 +53,7 @@ class GenderRepository extends ServiceEntityRepository
     public function queryAll(): QueryBuilder
     {
         return $this->getOrCreateQueryBuilder()
+            ->select('partial gender.{id, name}')
             ->orderBy('gender.name', 'ASC');
     }
 
@@ -68,21 +69,15 @@ class GenderRepository extends ServiceEntityRepository
         return $queryBuilder ?? $this->createQueryBuilder('gender');
     }
 
-    public function save(Gender $entity, bool $flush = false): void
+    /**
+     * Save entity.
+     *
+     * @param Gender $gender Gender entity
+     */
+    public function save(Gender $gender): void
     {
-        $this->getEntityManager()->persist($entity);
-
-        if ($flush) {
-            $this->getEntityManager()->flush();
-        }
+        $this->_em->persist($gender);
+        $this->_em->flush();
     }
 
-    public function remove(Gender $entity, bool $flush = false): void
-    {
-        $this->getEntityManager()->remove($entity);
-
-        if ($flush) {
-            $this->getEntityManager()->flush();
-        }
-    }
 }

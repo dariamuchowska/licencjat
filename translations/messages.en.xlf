@@ -102,6 +102,30 @@
         <source>title.size_details</source>
         <target>Size details</target>
       </trans-unit>
+      <trans-unit id="title.breed_create">
+        <source>title.breed_create</source>
+        <target>Add a new breed</target>
+      </trans-unit>
+      <trans-unit id="title.gender_create">
+        <source>title.gender_create</source>
+        <target>Add a new gender</target>
+      </trans-unit>
+      <trans-unit id="title.size_create">
+        <source>title.size_create</source>
+        <target>Add a new size</target>
+      </trans-unit>
+      <trans-unit id="action.save">
+        <source>action.save</source>
+        <target>Save</target>
+      </trans-unit>
+      <trans-unit id="title.dog_create">
+        <source>title.dog_create</source>
+        <target>What doggo is looking for a new home?</target>
+      </trans-unit>
+      <trans-unit id="label.none">
+        <source>label.none</source>
+        <target>none</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

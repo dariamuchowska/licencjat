@@ -7,6 +7,8 @@ namespace App\Repository;
 
 use App\Entity\Size;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\ORM\NoResultException;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -19,8 +21,6 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method Size[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  *
  * @extends ServiceEntityRepository<Size>
- *
- * @psalm-suppress LessSpecificImplementedReturnType
  */
 class SizeRepository extends ServiceEntityRepository
 {
@@ -53,6 +53,7 @@ class SizeRepository extends ServiceEntityRepository
     public function queryAll(): QueryBuilder
     {
         return $this->getOrCreateQueryBuilder()
+            ->select('partial size.{id, name}')
             ->orderBy('size.name', 'ASC');
     }
 
@@ -68,21 +69,15 @@ class SizeRepository extends ServiceEntityRepository
         return $queryBuilder ?? $this->createQueryBuilder('size');
     }
 
-    public function save(Size $entity, bool $flush = false): void
+    /**
+     * Save entity.
+     *
+     * @param Size $size Size entity
+     */
+    public function save(Size $size): void
     {
-        $this->getEntityManager()->persist($entity);
-
-        if ($flush) {
-            $this->getEntityManager()->flush();
-        }
+        $this->_em->persist($size);
+        $this->_em->flush();
     }
 
-    public function remove(Size $entity, bool $flush = false): void
-    {
-        $this->getEntityManager()->remove($entity);
-
-        if ($flush) {
-            $this->getEntityManager()->flush();
-        }
-    }
 }

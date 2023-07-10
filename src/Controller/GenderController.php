@@ -6,6 +6,7 @@
 namespace App\Controller;
 
 use App\Entity\Gender;
+use App\Form\GenderType;
 use App\Service\GenderServiceInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -72,6 +73,39 @@ class GenderController extends AbstractController
         return $this->render(
             'gender/show.html.twig',
             ['gender' => $gender]
+        );
+    }
+
+    /**
+     * Create action.
+     *
+     * @param Request $request HTTP request
+     *
+     * @return Response HTTP response
+     */
+    #[Route(
+        '/create',
+        name: 'gender_create',
+        methods: 'GET|POST',
+    )]
+    public function create(Request $request): Response
+    {
+        $gender = new Gender();
+        $form = $this->createForm(
+            GenderType::class,
+            $gender
+        );
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->genderService->save($gender);
+
+            return $this->redirectToRoute('gender_index');
+        }
+
+        return $this->render(
+            'gender/create.html.twig',
+            ['form' => $form->createView()]
         );
     }
 }

@@ -22,4 +22,10 @@ interface DogServiceInterface
      */
     public function getPaginatedList(int $page): PaginationInterface;
 
+    /**
+     * Save entity.
+     *
+     * @param Dog $dog Dog entity
+     */
+    public function save(Dog $dog): void;
 }

@@ -6,9 +6,10 @@
 namespace App\Controller;
 
 use App\Entity\Dog;
-use App\Service\DogService;
+use App\Form\DogType;
 use App\Service\DogServiceInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -70,6 +71,39 @@ class DogController extends AbstractController
         return $this->render(
             'dog/show.html.twig',
             ['dog' => $dog]
+        );
+    }
+
+    /**
+     * Create action.
+     *
+     * @param Request $request HTTP request
+     *
+     * @return Response HTTP response
+     */
+    #[Route(
+        '/create',
+        name: 'dog_create',
+        methods: 'GET|POST',
+    )]
+    public function create(Request $request): Response
+    {
+        $dog = new Dog();
+        $form = $this->createForm(
+            DogType::class,
+            $dog
+        );
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->dogService->save($dog);
+
+            return $this->redirectToRoute('dog_index');
+        }
+
+        return $this->render(
+            'dog/create.html.twig',
+            ['form' => $form->createView()]
         );
     }
 }

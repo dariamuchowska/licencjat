@@ -5,6 +5,7 @@
 
 namespace App\Service;
 
+use App\Entity\Breed;
 use App\Repository\BreedRepository;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
@@ -37,6 +38,20 @@ class BreedService implements BreedServiceInterface
     }
 
     /**
+     * Find by id.
+     *
+     * @param int $id Breed id
+     *
+     * @return Breed|null Breed entity
+     *
+     * @throws NonUniqueResultException
+     */
+    public function findOneById(int $id): ?Breed
+    {
+        return $this->breedRepository->findOneById($id);
+    }
+
+    /**
      * Get paginated list.
      *
      * @param int $page Page number
@@ -50,5 +65,15 @@ class BreedService implements BreedServiceInterface
             $page,
             BreedRepository::PAGINATOR_ITEMS_PER_PAGE
         );
+    }
+
+    /**
+     * Save entity.
+     *
+     * @param Breed $breed Breed entity
+     */
+    public function save(Breed $breed): void
+    {
+        $this->breedRepository->save($breed);
     }
 }

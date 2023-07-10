@@ -5,6 +5,7 @@
 
 namespace App\Service;
 
+use App\Entity\Gender;
 use App\Repository\GenderRepository;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
@@ -37,6 +38,20 @@ class GenderService implements GenderServiceInterface
     }
 
     /**
+     * Find by id.
+     *
+     * @param int $id Gender id
+     *
+     * @return Gender|null Gender entity
+     *
+     * @throws NonUniqueResultException
+     */
+    public function findOneById(int $id): ?Gender
+    {
+        return $this->genderRepository->findOneById($id);
+    }
+
+    /**
      * Get paginated list.
      *
      * @param int $page Page number
@@ -50,5 +65,15 @@ class GenderService implements GenderServiceInterface
             $page,
             GenderRepository::PAGINATOR_ITEMS_PER_PAGE
         );
+    }
+
+    /**
+     * Save entity.
+     *
+     * @param Gender $gender Gender entity
+     */
+    public function save(Gender $gender): void
+    {
+        $this->genderRepository->save($gender);
     }
 }

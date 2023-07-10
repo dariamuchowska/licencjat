@@ -6,11 +6,12 @@
 namespace App\Controller;
 
 use App\Entity\Breed;
+use App\Form\BreedType;
 use App\Service\BreedServiceInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Class BreedController.
@@ -72,6 +73,39 @@ class BreedController extends AbstractController
         return $this->render(
             'breed/show.html.twig',
             ['breed' => $breed]
+        );
+    }
+
+    /**
+     * Create action.
+     *
+     * @param Request $request HTTP request
+     *
+     * @return Response HTTP response
+     */
+    #[Route(
+        '/create',
+        name: 'breed_create',
+        methods: 'GET|POST',
+    )]
+    public function create(Request $request): Response
+    {
+        $breed = new Breed();
+        $form = $this->createForm(
+            BreedType::class,
+            $breed
+        );
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->breedService->save($breed);
+
+            return $this->redirectToRoute('breed_index');
+        }
+
+        return $this->render(
+            'breed/create.html.twig',
+            ['form' => $form->createView()]
         );
     }
 }

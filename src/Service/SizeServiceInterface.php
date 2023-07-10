@@ -14,6 +14,17 @@ use Knp\Component\Pager\Pagination\PaginationInterface;
 interface SizeServiceInterface
 {
     /**
+     * Find by id.
+     *
+     * @param int $id Size id
+     *
+     * @return Size|null Size entity
+     *
+     * @throws NonUniqueResultException
+     */
+    public function findOneById(int $id): ?Size;
+
+    /**
      * Get paginated list.
      *
      * @param int $page Page number
@@ -22,4 +33,10 @@ interface SizeServiceInterface
      */
     public function getPaginatedList(int $page): PaginationInterface;
 
+    /**
+     * Save entity.
+     *
+     * @param Size $size Size entity
+     */
+    public function save(Size $size): void;
 }

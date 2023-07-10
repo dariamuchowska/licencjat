@@ -7,6 +7,8 @@ namespace App\Repository;
 
 use App\Entity\Breed;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\ORM\NoResultException;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -19,8 +21,6 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method Breed[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  *
  * @extends ServiceEntityRepository<Breed>
- *
- * @psalm-suppress LessSpecificImplementedReturnType
  */
 class BreedRepository extends ServiceEntityRepository
 {
@@ -53,6 +53,7 @@ class BreedRepository extends ServiceEntityRepository
     public function queryAll(): QueryBuilder
     {
         return $this->getOrCreateQueryBuilder()
+            ->select('partial breed.{id, name}')
             ->orderBy('breed.name', 'ASC');
     }
 
@@ -68,21 +69,14 @@ class BreedRepository extends ServiceEntityRepository
         return $queryBuilder ?? $this->createQueryBuilder('breed');
     }
 
-    public function save(Breed $entity, bool $flush = false): void
+    /**
+     * Save entity.
+     *
+     * @param Breed $breed Breed entity
+     */
+    public function save(Breed $breed): void
     {
-        $this->getEntityManager()->persist($entity);
-
-        if ($flush) {
-            $this->getEntityManager()->flush();
-        }
-    }
-
-    public function remove(Breed $entity, bool $flush = false): void
-    {
-        $this->getEntityManager()->remove($entity);
-
-        if ($flush) {
-            $this->getEntityManager()->flush();
-        }
+        $this->_em->persist($breed);
+        $this->_em->flush();
     }
 }

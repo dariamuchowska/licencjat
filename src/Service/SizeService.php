@@ -5,6 +5,7 @@
 
 namespace App\Service;
 
+use App\Entity\Size;
 use App\Repository\SizeRepository;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
@@ -37,6 +38,20 @@ class SizeService implements SizeServiceInterface
     }
 
     /**
+     * Find by id.
+     *
+     * @param int $id Size id
+     *
+     * @return Size|null Size entity
+     *
+     * @throws NonUniqueResultException
+     */
+    public function findOneById(int $id): ?Size
+    {
+        return $this->sizeRepository->findOneById($id);
+    }
+
+    /**
      * Get paginated list.
      *
      * @param int $page Page number
@@ -50,5 +65,15 @@ class SizeService implements SizeServiceInterface
             $page,
             SizeRepository::PAGINATOR_ITEMS_PER_PAGE
         );
+    }
+
+    /**
+     * Save entity.
+     *
+     * @param Size $size Size entity
+     */
+    public function save(Size $size): void
+    {
+        $this->sizeRepository->save($size);
     }
 }

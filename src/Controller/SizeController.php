@@ -6,6 +6,7 @@
 namespace App\Controller;
 
 use App\Entity\Size;
+use App\Form\SizeType;
 use App\Service\SizeServiceInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -72,6 +73,36 @@ class SizeController extends AbstractController
         return $this->render(
             'size/show.html.twig',
             ['size' => $size]
+        );
+    }
+
+    /**
+     * Create action.
+     *
+     * @param Request $request HTTP request
+     *
+     * @return Response HTTP response
+     */
+    #[Route(
+        '/create',
+        name: 'size_create',
+        methods: 'GET|POST',
+    )]
+    public function create(Request $request): Response
+    {
+        $size = new Size();
+        $form = $this->createForm(SizeType::class, $size);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->sizeService->save($size);
+
+            return $this->redirectToRoute('size_index');
+        }
+
+        return $this->render(
+            'size/create.html.twig',
+            ['form' => $form->createView()]
         );
     }
 }
