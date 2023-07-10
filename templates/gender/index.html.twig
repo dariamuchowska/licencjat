@@ -7,6 +7,11 @@
 {% block body %}
     <h1>{{ 'title.gender_list'|trans }}</h1>
 
+    <div class="col-1">
+        <a role="button" class="btn btn-outline-success" id="create-btn" href="{{ url('gender_create') }}" title="{{ 'action.create'|trans }}">{{ 'action.create'|trans }}</a>
+    </div>
+
+
     {% if pagination is defined and pagination.items|length %}
 
         <div class="navigation text-center">
@@ -29,6 +34,16 @@
                     <td>
                         <a href="{{ url('gender_show', {id: gender.id}) }}" title="{{ 'action.view'|trans }}">
                             {{ 'action.view'|trans }}
+                        </a>
+                    </td>
+                    <td>
+                        <a class="btn btn-outline-success" href="{{ url('gender_edit', {id: gender.id}) }}" title="{{ 'action.edit'|trans }}">
+                            {{ 'action.edit'|trans }}
+                        </a>
+                    </td>
+                    <td>
+                        <a class="btn btn-outline-danger" href="{{ url('gender_delete', {id: gender.id}) }}" title="{{ 'action.delete'|trans }}">
+                            {{ 'action.delete'|trans }}
                         </a>
                     </td>
                 </tr>

@@ -189,6 +189,30 @@
         <source>message.deleted_successfully</source>
         <target>Deleted successfully!</target>
       </trans-unit>
+      <trans-unit id="title.dogs">
+        <source>title.dogs</source>
+        <target>Dogs</target>
+      </trans-unit>
+      <trans-unit id="title.breeds">
+        <source>title.breeds</source>
+        <target>Breeds</target>
+      </trans-unit>
+      <trans-unit id="title.genders">
+        <source>title.genders</source>
+        <target>Genders</target>
+      </trans-unit>
+      <trans-unit id="title.sizes">
+        <source>title.sizes</source>
+        <target>Sizes</target>
+      </trans-unit>
+      <trans-unit id="action.create">
+        <source>action.create</source>
+        <target>Add</target>
+      </trans-unit>
+      <trans-unit id="action.edit">
+        <source>action.edit</source>
+        <target>Edit</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

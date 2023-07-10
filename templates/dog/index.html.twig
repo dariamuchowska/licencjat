@@ -8,6 +8,11 @@
     <h1>{{ 'title.dog_list'|trans }}</h1>
     {% if pagination is defined and pagination.items|length %}
 
+        <div class="col-1">
+            <a role="button" class="btn btn-outline-success" id="create-btn" href="{{ url('dog_create') }}" title="{{ 'action.create'|trans }}">{{ 'action.create'|trans }}</a>
+        </div>
+
+
         <div class="navigation text-center">
             {{ knp_pagination_render(pagination) }}
         </div>
@@ -36,6 +41,16 @@
                     <td>
                         <a class="btn btn-outline-primary" href="{{ url('dog_show', {id: dog.id}) }}" title="{{ 'action.view'|trans }}">
                             {{ 'action.view'|trans }}
+                        </a>
+                    </td>
+                    <td>
+                        <a class="btn btn-outline-success" href="{{ url('dog_edit', {id: dog.id}) }}" title="{{ 'action.edit'|trans }}">
+                            {{ 'action.edit'|trans }}
+                        </a>
+                    </td>
+                    <td>
+                        <a class="btn btn-outline-danger" href="{{ url('dog_delete', {id: dog.id}) }}" title="{{ 'action.delete'|trans }}">
+                            {{ 'action.delete'|trans }}
                         </a>
                     </td>
                 </tr>
