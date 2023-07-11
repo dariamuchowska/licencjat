@@ -14,7 +14,7 @@
 <body>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Doglink</a>
+    <a class="navbar-brand" href="#">DogLink</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -39,13 +39,8 @@
 
 
 <div class="container-fluid">
-    {% for type, messages in app.session.flashBag.all %}
-        {% for message in messages %}
-            <div class="alert alert-{{ type }}" role="alert">
-                {{ message }}
-            </div>
-        {% endfor %}
-    {% endfor %}
+    {% include 'default/_flash_messages.html.twig' %}
+</div>
 
 <main role="main" class="container-fluid">
     {% block body %}{% endblock %}
