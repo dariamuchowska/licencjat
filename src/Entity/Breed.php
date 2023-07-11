@@ -8,6 +8,7 @@ namespace App\Entity;
 use App\Repository\BreedRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class Breed.
@@ -33,8 +34,11 @@ class Breed
      *
      * @var string|null
      */
-    #[ORM\Column(length: 255)]
-    private ?string $name;
+    #[ORM\Column(type: 'string', length: 255)]
+    #[Assert\Type('string')]
+    #[Assert\NotBlank]
+    #[Assert\Length(min: 2, max: 64)]
+    private ?string $name = null;
 
     /**
      * Getter for id.

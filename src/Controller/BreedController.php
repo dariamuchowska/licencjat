@@ -186,10 +186,23 @@ class BreedController extends AbstractController
     )]
     public function delete(Request $request, Breed $breed): Response
     {
-        $form = $this->createForm(BreedType::class, $breed, [
-            'method' => 'DELETE',
-            'action' => $this->generateUrl('breed_delete', ['id' => $breed->getId()]),
-        ]);
+        if(!$this->breedService->canBeDeleted($breed)) {
+            $this->addFlash(
+                'warning',
+                $this->translator->trans('message.breed_contains_dogs')
+            );
+
+            return $this->redirectToRoute('breed_index');
+        }
+
+        $form = $this->createForm(
+            BreedType::class,
+            $breed,
+            [
+                'method' => 'DELETE',
+                'action' => $this->generateUrl('breed_delete', ['id' => $breed->getId()]),
+            ]
+        );
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

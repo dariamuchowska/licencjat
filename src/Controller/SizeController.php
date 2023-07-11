@@ -183,10 +183,23 @@ class SizeController extends AbstractController
     )]
     public function delete(Request $request, Size $size): Response
     {
-        $form = $this->createForm(SizeType::class, $size, [
-            'method' => 'DELETE',
-            'action' => $this->generateUrl('size_delete', ['id' => $size->getId()]),
-        ]);
+        if(!$this->sizeService->canBeDeleted($size)) {
+            $this->addFlash(
+                'warning',
+                $this->translator->trans('message.size_contains_dogs')
+            );
+
+            return $this->redirectToRoute('size_index');
+        }
+
+        $form = $this->createForm(
+            SizeType::class,
+            $size,
+            [
+                'method' => 'DELETE',
+                'action' => $this->generateUrl('size_delete', ['id' => $size->getId()]),
+            ]
+        );
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

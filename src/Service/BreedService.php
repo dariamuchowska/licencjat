@@ -7,6 +7,7 @@ namespace App\Service;
 
 use App\Entity\Breed;
 use App\Repository\BreedRepository;
+use App\Repository\DogRepository;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
 
@@ -26,14 +27,21 @@ class BreedService implements BreedServiceInterface
     private PaginatorInterface $paginator;
 
     /**
+     * Dog repository.
+     */
+    private DogRepository $dogRepository;
+
+    /**
      * Constructor.
      *
-     * @param BreedRepository     $breedRepository Breed repository
-     * @param PaginatorInterface $paginator      Paginator
+     * @param BreedRepository     $breedRepository   Breed repository
+     * @param DogRepository       $dogRepository     Dog repository
+     * @param PaginatorInterface  $paginator         Paginator
      */
-    public function __construct(BreedRepository $breedRepository, PaginatorInterface $paginator)
+    public function __construct(BreedRepository $breedRepository, DogRepository $dogRepository, PaginatorInterface $paginator)
     {
         $this->breedRepository = $breedRepository;
+        $this->dogRepository = $dogRepository;
         $this->paginator = $paginator;
     }
 
@@ -85,5 +93,23 @@ class BreedService implements BreedServiceInterface
     public function delete(Breed $breed): void
     {
         $this->breedRepository->delete($breed);
+    }
+
+    /**
+     * Can Breed be deleted?
+     *
+     * @param Breed $breed Breed entity
+     *
+     * @return bool Result
+     */
+    public function canBeDeleted(Breed $breed): bool
+    {
+        try {
+            $result = $this->dogRepository->countByBreed($breed);
+
+            return !($result > 0);
+        } catch (NoResultException|NonUniqueResultException $ex) {
+            return false;
+        }
     }
 }

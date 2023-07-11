@@ -47,4 +47,12 @@ interface GenderServiceInterface
      */
     public function delete(Gender $gender): void;
 
+    /**
+     * Can Gender be deleted?
+     *
+     * @param Gender $gender Gender entity
+     *
+     * @return bool Result
+     */
+    public function canBeDeleted(Gender $gender): bool;
 }

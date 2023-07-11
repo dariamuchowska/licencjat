@@ -186,10 +186,23 @@ class GenderController extends AbstractController
     )]
     public function delete(Request $request, Gender $gender): Response
     {
-        $form = $this->createForm(GenderType::class, $gender, [
-            'method' => 'DELETE',
-            'action' => $this->generateUrl('gender_delete', ['id' => $gender->getId()]),
-        ]);
+        if(!$this->genderService->canBeDeleted($gender)) {
+            $this->addFlash(
+                'warning',
+                $this->translator->trans('message.gender_contains_dogs')
+            );
+
+            return $this->redirectToRoute('gender_index');
+        }
+
+        $form = $this->createForm(
+            GenderType::class,
+            $gender,
+            [
+                'method' => 'DELETE',
+                'action' => $this->generateUrl('gender_delete', ['id' => $gender->getId()]),
+            ]
+        );
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

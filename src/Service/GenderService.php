@@ -6,6 +6,7 @@
 namespace App\Service;
 
 use App\Entity\Gender;
+use App\Repository\DogRepository;
 use App\Repository\GenderRepository;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
@@ -26,14 +27,21 @@ class GenderService implements GenderServiceInterface
     private PaginatorInterface $paginator;
 
     /**
+     * Dog repository.
+     */
+    private DogRepository $dogRepository;
+
+    /**
      * Constructor.
      *
      * @param GenderRepository     $genderRepository Gender repository
-     * @param PaginatorInterface $paginator      Paginator
+     * @param DogRepository        $dogRepository    Dog repository
+     * @param PaginatorInterface   $paginator        Paginator
      */
-    public function __construct(GenderRepository $genderRepository, PaginatorInterface $paginator)
+    public function __construct(GenderRepository $genderRepository, DogRepository $dogRepository, PaginatorInterface $paginator)
     {
         $this->genderRepository = $genderRepository;
+        $this->dogRepository = $dogRepository;
         $this->paginator = $paginator;
     }
 
@@ -85,5 +93,23 @@ class GenderService implements GenderServiceInterface
     public function delete(Gender $gender): void
     {
         $this->genderRepository->delete($gender);
+    }
+
+    /**
+     * Can Gender be deleted?
+     *
+     * @param Gender $gender Gender entity
+     *
+     * @return bool Result
+     */
+    public function canBeDeleted(Gender $gender): bool
+    {
+        try {
+            $result = $this->dogRepository->countByGender($gender);
+
+            return !($result > 0);
+        } catch (NoResultException|NonUniqueResultException $ex) {
+            return false;
+        }
     }
 }

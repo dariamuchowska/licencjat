@@ -46,4 +46,13 @@ interface SizeServiceInterface
      * @param Size $size Size entity
      */
     public function delete(Size $size): void;
+
+    /**
+     * Can Size be deleted?
+     *
+     * @param Size $size Size entity
+     *
+     * @return bool Result
+     */
+    public function canBeDeleted(Size $size): bool;
 }

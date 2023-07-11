@@ -7,6 +7,7 @@ namespace App\Service;
 
 use App\Entity\Size;
 use App\Repository\SizeRepository;
+use App\Repository\DogRepository;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
 
@@ -21,6 +22,11 @@ class SizeService implements SizeServiceInterface
     private SizeRepository $sizeRepository;
 
     /**
+     * Dog repository.
+     */
+    private DogRepository $dogRepository;
+
+    /**
      * Paginator.
      */
     private PaginatorInterface $paginator;
@@ -29,11 +35,13 @@ class SizeService implements SizeServiceInterface
      * Constructor.
      *
      * @param SizeRepository     $sizeRepository Size repository
+     * @param DogRepository      $dogRepository  Dog repository
      * @param PaginatorInterface $paginator      Paginator
      */
-    public function __construct(SizeRepository $sizeRepository, PaginatorInterface $paginator)
+    public function __construct(SizeRepository $sizeRepository, DogRepository $dogRepository, PaginatorInterface $paginator)
     {
         $this->sizeRepository = $sizeRepository;
+        $this->dogRepository = $dogRepository;
         $this->paginator = $paginator;
     }
 
@@ -85,5 +93,23 @@ class SizeService implements SizeServiceInterface
     public function delete(Size $size): void
     {
         $this->sizeRepository->delete($size);
+    }
+
+    /**
+     * Can Size be deleted?
+     *
+     * @param Size $size Size entity
+     *
+     * @return bool Result
+     */
+    public function canBeDeleted(Size $size): bool
+    {
+        try {
+            $result = $this->dogRepository->countBySize($size);
+
+            return !($result > 0);
+        } catch (NoResultException|NonUniqueResultException $ex) {
+            return false;
+        }
     }
 }

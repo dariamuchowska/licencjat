@@ -47,4 +47,13 @@ interface BreedServiceInterface
      */
     public function delete(Breed $breed): void;
 
+    /**
+     * Can Breed be deleted?
+     *
+     * @param Breed $breed Breed entity
+     *
+     * @return bool Result
+     */
+    public function canBeDeleted(Breed $breed): bool;
+
 }

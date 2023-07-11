@@ -5,7 +5,10 @@
 
 namespace App\Repository;
 
+use App\Entity\Breed;
 use App\Entity\Dog;
+use App\Entity\Gender;
+use App\Entity\Size;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
@@ -99,4 +102,66 @@ class DogRepository extends ServiceEntityRepository
         $this->_em->flush();
     }
 
+    /**
+     * Count dogs by breed.
+     *
+     * @param Breed $breed Breed
+     *
+     * @return int Number of dogs in breed
+     *
+     * @throws NoResultException
+     * @throws NonUniqueResultException
+     */
+    public function countByBreed(Breed $breed): int
+    {
+        $qb = $this->getOrCreateQueryBuilder();
+
+        return $qb->select($qb->expr()->countDistinct('dog.id'))
+            ->where('dog.breed = :breed')
+            ->setParameter(':breed', $breed)
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
+    /**
+     * Count dogs by gender.
+     *
+     * @param Gender $gender Gender
+     *
+     * @return int Number of dogs in gender
+     *
+     * @throws NoResultException
+     * @throws NonUniqueResultException
+     */
+    public function countByGender(Gender $gender): int
+    {
+        $qb = $this->getOrCreateQueryBuilder();
+
+        return $qb->select($qb->expr()->countDistinct('dog.id'))
+            ->where('dog.gender = :gender')
+            ->setParameter(':gender', $gender)
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
+    /**
+     * Count dogs by size.
+     *
+     * @param Size $size Size
+     *
+     * @return int Number of dogs in size
+     *
+     * @throws NoResultException
+     * @throws NonUniqueResultException
+     */
+    public function countBySize(Size $size): int
+    {
+        $qb = $this->getOrCreateQueryBuilder();
+
+        return $qb->select($qb->expr()->countDistinct('dog.id'))
+            ->where('dog.size = :size')
+            ->setParameter(':size', $size)
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
 }

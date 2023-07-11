@@ -218,6 +218,18 @@
         <source>message.form_error</source>
         <target>Błąd formularza</target>
       </trans-unit>
+      <trans-unit id="message.breed_contains_dogs">
+        <source>message.breed_contains_dogs</source>
+        <target>Nie można usunąć. Ta rasa jest przypisana do psów.</target>
+      </trans-unit>
+      <trans-unit id="message.size_contains_dogs">
+        <source>message.size_contains_dogs</source>
+        <target>Nie można usunąć. Ten rozmiar jest przypisany do psów.</target>
+      </trans-unit>
+      <trans-unit id="message.gender_contains_dogs">
+        <source>message.gender_contains_dogs</source>
+        <target>Nie można usunąć. Ta płeć jest przypisana do psów.</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
