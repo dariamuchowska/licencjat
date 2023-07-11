@@ -33,6 +33,15 @@
             <li class="nav-item">
                 <a class="nav-link" href="{{ url('size_index') }}">{{ 'title.sizes'|trans }}</a>
             </li>
+            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                <li class="nav-item">
+                    <a class="btn btn-secondary" role="button" href="{{ url('app_logout') }}">{{ 'action.logout'|trans }}</a>
+                </li>
+            {% else %}
+                <li class="nav-item">
+                    <a class="btn btn-secondary" role="button" href="{{ url('app_login') }}">{{ 'action.login'|trans }}</a>
+                </li>
+            {% endif %}
         </ul>
     </div>
 </nav>

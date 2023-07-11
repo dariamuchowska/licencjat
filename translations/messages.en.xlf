@@ -229,6 +229,30 @@
         <source>message.gender_contains_dogs</source>
         <target>Can't delete as this gender contains dogs.</target>
       </trans-unit>
+      <trans-unit id="action.login">
+        <source>action.login</source>
+        <target>Log in</target>
+      </trans-unit>
+      <trans-unit id="action.logout">
+        <source>action.logout</source>
+        <target>Log out</target>
+      </trans-unit>
+      <trans-unit id="label.sign_in">
+        <source>label.sign_in</source>
+        <target>Please sign in!</target>
+      </trans-unit>
+      <trans-unit id="label.email">
+        <source>label.email</source>
+        <target>Email</target>
+      </trans-unit>
+      <trans-unit id="label.password">
+        <source>label.password</source>
+        <target>Password</target>
+      </trans-unit>
+      <trans-unit id="action.password_change">
+        <source>action.password_change</source>
+        <target>Change password</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

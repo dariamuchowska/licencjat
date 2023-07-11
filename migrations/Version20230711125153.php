@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20230703112206 extends AbstractMigration
+final class Version20230711125153 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -20,14 +20,12 @@ final class Version20230703112206 extends AbstractMigration
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('ALTER TABLE dogs DROP FOREIGN KEY FK_353BEEB3498DA827');
-        $this->addSql('ALTER TABLE dogs ADD CONSTRAINT FK_353BEEB3498DA827 FOREIGN KEY (size_id) REFERENCES sizes (id)');
+        $this->addSql('CREATE TABLE users (id INT AUTO_INCREMENT NOT NULL, email VARCHAR(180) NOT NULL, roles JSON NOT NULL, password VARCHAR(255) NOT NULL, UNIQUE INDEX email_idx (email), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
     }
 
     public function down(Schema $schema): void
     {
         // this down() migration is auto-generated, please modify it to your needs
-        $this->addSql('ALTER TABLE dogs DROP FOREIGN KEY FK_353BEEB3498DA827');
-        $this->addSql('ALTER TABLE dogs ADD CONSTRAINT FK_353BEEB3498DA827 FOREIGN KEY (size_id) REFERENCES genders (id) ON UPDATE NO ACTION ON DELETE NO ACTION');
+        $this->addSql('DROP TABLE users');
     }
 }
