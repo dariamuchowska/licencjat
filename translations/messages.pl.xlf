@@ -254,6 +254,50 @@
         <source>action.password_change</source>
         <target>Zmień hasło</target>
       </trans-unit>
+      <trans-unit id="label.author">
+        <source>label.author</source>
+        <target>Właściciel</target>
+      </trans-unit>
+      <trans-unit id="title.users">
+        <source>title.users</source>
+        <target>Użytkownicy</target>
+      </trans-unit>
+      <trans-unit id="title.record_details_user">
+        <source>title.record_details_user</source>
+        <target>Informacje o użytkowniku</target>
+      </trans-unit>
+      <trans-unit id="title.record_list_user">
+        <source>title.record_list_user</source>
+        <target>Lista użytkowników</target>
+      </trans-unit>
+      <trans-unit id="title.account">
+        <source>title.account</source>
+        <target>Moje konto</target>
+      </trans-unit>
+      <trans-unit id="title.user">
+        <source>title.user</source>
+        <target>Zarządzaj</target>
+      </trans-unit>
+      <trans-unit id="action.account">
+        <source>action.account</source>
+        <target>Moje konto</target>
+      </trans-unit>
+      <trans-unit id="label.password_req">
+        <source>label.password_req</source>
+        <target>Nowe hasło</target>
+      </trans-unit>
+      <trans-unit id="label.repeatedPassword_req">
+        <source>label.repeatedPassword_req</source>
+        <target>Powtórz nowe hasło</target>
+      </trans-unit>
+      <trans-unit id="action.back_to_account">
+        <source>action.back_to_account</source>
+        <target>Powrót do konta</target>
+      </trans-unit>
+      <trans-unit id="title.email_edit">
+        <source>title.email_edit</source>
+        <target>Edytuj adres email</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

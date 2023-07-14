@@ -30,7 +30,7 @@ abstract class AbstractBaseFixtures extends Fixture
     protected ?ObjectManager $manager = null;
 
     /**
-     * Object reference index.
+     * Object reference index.html.twig.
      *
      * @var array<string, array<int, array-key>>
      */

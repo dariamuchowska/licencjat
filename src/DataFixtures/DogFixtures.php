@@ -8,6 +8,7 @@ namespace App\DataFixtures;
 use App\Entity\Dog;
 use App\Entity\Breed;
 use App\Entity\Gender;
+use App\Entity\User;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 
 /**
@@ -43,6 +44,10 @@ class DogFixtures extends AbstractBaseFixtures implements DependentFixtureInterf
             $size = $this->getRandomReference('sizes');
             $dog->setSize($size);
 
+            /** @var User $author */
+            $author = $this->getRandomReference('users');
+            $dog->setAuthor($author);
+
             return $dog;
         });
 
@@ -55,10 +60,10 @@ class DogFixtures extends AbstractBaseFixtures implements DependentFixtureInterf
      *
      * @return string[] of dependencies
      *
-     * @psalm-return array{0: BreedFixtures::class, 1: GenderFixtures::class, 2: SizeFixtures::class}
+     * @psalm-return array{0: BreedFixtures::class, 1: GenderFixtures::class, 2: SizeFixtures::class, 3: UserFixtures::class}
      */
     public function getDependencies(): array
     {
-        return [BreedFixtures::class, GenderFixtures::class, SizeFixtures::class];
+        return [BreedFixtures::class, GenderFixtures::class, SizeFixtures::class, UserFixtures::class];
     }
 }

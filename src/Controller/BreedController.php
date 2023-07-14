@@ -8,6 +8,7 @@ namespace App\Controller;
 use App\Entity\Breed;
 use App\Form\BreedType;
 use App\Service\BreedServiceInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -53,6 +54,9 @@ class BreedController extends AbstractController
         name: 'breed_index',
         methods: 'GET'
     )]
+    #[IsGranted(
+        'ROLE_ADMIN'
+    )]
     public function index(Request $request): Response
     {
         $pagination = $this->breedService->getPaginatedList(
@@ -78,6 +82,9 @@ class BreedController extends AbstractController
         requirements: ['id' => '[1-9]\d*'],
         methods: 'GET',
     )]
+    #[IsGranted(
+        'ROLE_ADMIN'
+    )]
     public function show(Breed $breed): Response
     {
         return $this->render(
@@ -93,6 +100,9 @@ class BreedController extends AbstractController
      *
      * @return Response HTTP response
      */
+    #[IsGranted(
+        'ROLE_ADMIN'
+    )]
     #[Route(
         '/create',
         name: 'breed_create',
@@ -132,6 +142,9 @@ class BreedController extends AbstractController
      *
      * @return Response HTTP response
      */
+    #[IsGranted(
+        'ROLE_ADMIN'
+    )]
     #[Route(
         '/{id}/edit',
         name: 'breed_edit',
@@ -178,6 +191,9 @@ class BreedController extends AbstractController
      *
      * @return Response HTTP response
      */
+    #[IsGranted(
+        'ROLE_ADMIN'
+    )]
     #[Route(
         '/{id}/delete',
         name: 'breed_delete',

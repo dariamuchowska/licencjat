@@ -8,6 +8,7 @@ namespace App\Entity;
 use App\Entity\Enum\UserRole;
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -18,8 +19,23 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\Table(name: 'users')]
 #[ORM\UniqueConstraint(name: 'email_idx', columns: ['email'])]
+#[UniqueEntity(fields: 'email', message: 'There is already an account connected to this email')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
+    /**
+     * Role user.
+     *
+     * @var string
+     */
+    public const ROLE_USER = 'ROLE_USER';
+
+    /**
+     * Role admin.
+     *
+     * @var string
+     */
+    public const ROLE_ADMIN = 'ROLE_ADMIN';
+
     /**
      * Primary key.
      *
@@ -177,5 +193,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    /**
+     * To string.
+     *
+     * @return string|null
+     */
+    public function __toString() {
+        return $this->email;
     }
 }

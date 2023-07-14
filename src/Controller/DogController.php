@@ -6,8 +6,10 @@
 namespace App\Controller;
 
 use App\Entity\Dog;
+use App\Entity\User;
 use App\Form\DogType;
 use App\Service\DogServiceInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\HttpFoundation\Request;
@@ -31,7 +33,6 @@ class DogController extends AbstractController
      */
     private TranslatorInterface $translator;
 
-
     /**
      * Constructor.
      *
@@ -51,7 +52,10 @@ class DogController extends AbstractController
      *
      * @return Response HTTP response
      */
-    #[Route(name: 'dog_index', methods: 'GET')]
+    #[Route(
+        name: 'dog_index',
+        methods: 'GET'
+    )]
     public function index(Request $request): Response
     {
         $pagination = $this->dogService->getPaginatedList(
@@ -99,10 +103,14 @@ class DogController extends AbstractController
     )]
     public function create(Request $request): Response
     {
+        /** @var User $user */
+        $user = $this->getUser();
         $dog = new Dog();
+        $dog->setAuthor($user);
         $form = $this->createForm(
             DogType::class,
-            $dog
+            $dog,
+            ['action' => $this->generateUrl('dog_create')]
         );
         $form->handleRequest($request);
 
@@ -136,6 +144,10 @@ class DogController extends AbstractController
         name: 'dog_edit',
         requirements: ['id' => '[1-9]\d*'],
         methods: 'GET|PUT'
+    )]
+    #[IsGranted(
+        'EDIT',
+        subject: 'dog'
     )]
     public function edit(Request $request, Dog $dog): Response
     {
@@ -182,6 +194,10 @@ class DogController extends AbstractController
         name: 'dog_delete',
         requirements: ['id' => '[1-9]\d*'],
         methods: 'GET|DELETE'
+    )]
+    #[IsGranted(
+        'DELETE',
+        subject: 'dog'
     )]
     public function delete(Request $request, Dog $dog): Response
     {

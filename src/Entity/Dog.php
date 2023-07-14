@@ -87,6 +87,17 @@ class Dog
     private ?Size $size = null;
 
     /**
+     * Author.
+     *
+     * @var User|null
+     */
+    #[ORM\ManyToOne(targetEntity: User::class, fetch: 'EXTRA_LAZY')]
+    #[ORM\JoinColumn(nullable: false)]
+    #[Assert\NotBlank]
+    #[Assert\Type(User::class)]
+    private ?User $author;
+
+    /**
      * Getter for id.
      *
      * @return int|null Id
@@ -234,5 +245,17 @@ class Dog
     public function setSize(?Size $size): void
     {
         $this->size = $size;
+    }
+
+    public function getAuthor(): ?User
+    {
+        return $this->author;
+    }
+
+    public function setAuthor(?User $author): static
+    {
+        $this->author = $author;
+
+        return $this;
     }
 }

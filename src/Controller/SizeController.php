@@ -8,6 +8,7 @@ namespace App\Controller;
 use App\Entity\Size;
 use App\Form\SizeType;
 use App\Service\SizeServiceInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -53,6 +54,9 @@ class SizeController extends AbstractController
         name: 'size_index',
         methods: 'GET'
     )]
+    #[IsGranted(
+        'ROLE_ADMIN'
+    )]
     public function index(Request $request): Response
     {
         $pagination = $this->sizeService->getPaginatedList(
@@ -78,6 +82,9 @@ class SizeController extends AbstractController
         requirements: ['id' => '[1-9]\d*'],
         methods: 'GET',
     )]
+    #[IsGranted(
+        'ROLE_ADMIN'
+    )]
     public function show(Size $size): Response
     {
         return $this->render(
@@ -97,6 +104,9 @@ class SizeController extends AbstractController
         '/create',
         name: 'size_create',
         methods: 'GET|POST',
+    )]
+    #[IsGranted(
+        'ROLE_ADMIN'
     )]
     public function create(Request $request): Response
     {
@@ -129,6 +139,9 @@ class SizeController extends AbstractController
      *
      * @return Response HTTP response
      */
+    #[IsGranted(
+        'ROLE_ADMIN'
+    )]
     #[Route(
         '/{id}/edit',
         name: 'size_edit',
@@ -175,6 +188,9 @@ class SizeController extends AbstractController
      *
      * @return Response HTTP response
      */
+    #[IsGranted(
+        'ROLE_ADMIN'
+    )]
     #[Route(
         '/{id}/delete',
         name: 'size_delete',

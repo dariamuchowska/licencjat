@@ -26,6 +26,7 @@
                 <th>{{ knp_pagination_sortable(pagination, 'label.gender'|trans, 'gender.name') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label.size'|trans, 'size.name') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label.description'|trans, 'dog.description') }}</th>
+                <th>{{ 'label.author'|trans }}</th>
                 <th>{{ 'label.actions'|trans }}</th>
             </tr>
             </thead>
@@ -38,20 +39,25 @@
                     <td>{{ dog.gender }}</td>
                     <td>{{ dog.size }}</td>
                     <td>{{ dog.description }}</td>
+                    <td>{{ dog.author }}</td>
                     <td>
                         <a class="btn btn-outline-primary" href="{{ url('dog_show', {id: dog.id}) }}" title="{{ 'action.view'|trans }}">
                             {{ 'action.view'|trans }}
                         </a>
                     </td>
                     <td>
-                        <a class="btn btn-outline-success" href="{{ url('dog_edit', {id: dog.id}) }}" title="{{ 'action.edit'|trans }}">
-                            {{ 'action.edit'|trans }}
-                        </a>
+                        {% if is_granted('EDIT', dog) %}
+                            <a class="btn btn-outline-success" href="{{ url('dog_edit', {id: dog.id}) }}" title="{{ 'action.edit'|trans }}">
+                                {{ 'action.edit'|trans }}
+                            </a>
+                        {% endif %}
                     </td>
                     <td>
-                        <a class="btn btn-outline-danger" href="{{ url('dog_delete', {id: dog.id}) }}" title="{{ 'action.delete'|trans }}">
-                            {{ 'action.delete'|trans }}
-                        </a>
+                        {% if is_granted('DELETE', dog) %}
+                            <a class="btn btn-outline-danger" href="{{ url('dog_delete', {id: dog.id}) }}" title="{{ 'action.delete'|trans }}">
+                                {{ 'action.delete'|trans }}
+                            </a>
+                        {% endif %}
                     </td>
                 </tr>
             {% endfor %}

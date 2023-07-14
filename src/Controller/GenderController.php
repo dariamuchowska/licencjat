@@ -8,6 +8,7 @@ namespace App\Controller;
 use App\Entity\Gender;
 use App\Form\GenderType;
 use App\Service\GenderServiceInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -53,6 +54,9 @@ class GenderController extends AbstractController
         name: 'gender_index',
         methods: 'GET'
     )]
+    #[IsGranted(
+        'ROLE_ADMIN'
+    )]
     public function index(Request $request): Response
     {
         $pagination = $this->genderService->getPaginatedList(
@@ -78,6 +82,9 @@ class GenderController extends AbstractController
         requirements: ['id' => '[1-9]\d*'],
         methods: 'GET',
     )]
+    #[IsGranted(
+        'ROLE_ADMIN'
+    )]
     public function show(Gender $gender): Response
     {
         return $this->render(
@@ -97,6 +104,9 @@ class GenderController extends AbstractController
         '/create',
         name: 'gender_create',
         methods: 'GET|POST',
+    )]
+    #[IsGranted(
+        'ROLE_ADMIN'
     )]
     public function create(Request $request): Response
     {
@@ -132,6 +142,9 @@ class GenderController extends AbstractController
      *
      * @return Response HTTP response
      */
+    #[IsGranted(
+        'ROLE_ADMIN'
+    )]
     #[Route(
         '/{id}/edit',
         name: 'gender_edit',
@@ -178,6 +191,9 @@ class GenderController extends AbstractController
      *
      * @return Response HTTP response
      */
+    #[IsGranted(
+        'ROLE_ADMIN'
+    )]
     #[Route(
         '/{id}/delete',
         name: 'gender_delete',

@@ -253,6 +253,50 @@
         <source>action.password_change</source>
         <target>Change password</target>
       </trans-unit>
+      <trans-unit id="label.author">
+        <source>label.author</source>
+        <target>Owner</target>
+      </trans-unit>
+      <trans-unit id="title.users">
+        <source>title.users</source>
+        <target>Users</target>
+      </trans-unit>
+      <trans-unit id="title.record_details_user">
+        <source>title.record_details_user</source>
+        <target>User details</target>
+      </trans-unit>
+      <trans-unit id="title.record_list_user">
+        <source>title.record_list_user</source>
+        <target>List of users</target>
+      </trans-unit>
+      <trans-unit id="title.account">
+        <source>title.account</source>
+        <target>My account</target>
+      </trans-unit>
+      <trans-unit id="title.user">
+        <source>title.user</source>
+        <target>Logged in as</target>
+      </trans-unit>
+      <trans-unit id="action.account">
+        <source>action.account</source>
+        <target>My account</target>
+      </trans-unit>
+      <trans-unit id="label.password_req">
+        <source>label.password_req</source>
+        <target>New password</target>
+      </trans-unit>
+      <trans-unit id="label.repeatedPassword_req">
+        <source>label.repeatedPassword_req</source>
+        <target>Repeat the new password</target>
+      </trans-unit>
+      <trans-unit id="action.back_to_account">
+        <source>action.back_to_account</source>
+        <target>Back to account</target>
+      </trans-unit>
+      <trans-unit id="title.email_edit">
+        <source>title.email_edit</source>
+        <target>Edit email address</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
