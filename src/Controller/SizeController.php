@@ -188,14 +188,14 @@ class SizeController extends AbstractController
      *
      * @return Response HTTP response
      */
-    #[IsGranted(
-        'ROLE_ADMIN'
-    )]
     #[Route(
         '/{id}/delete',
         name: 'size_delete',
         requirements: ['id' => '[1-9]\d*'],
         methods: 'GET|DELETE'
+    )]
+    #[IsGranted(
+        'ROLE_ADMIN'
     )]
     public function delete(Request $request, Size $size): Response
     {

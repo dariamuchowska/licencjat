@@ -56,6 +56,9 @@ class UserController extends AbstractController
         name: 'user_index',
         methods: 'GET'
     )]
+    #[IsGranted(
+        'ROLE_ADMIN'
+    )]
     public function index(Request $request): Response
     {
         $pagination = $this->userService->getPaginatedList(
@@ -99,6 +102,10 @@ class UserController extends AbstractController
         requirements: ['id' => '[1-9]\d*'],
         methods: 'GET|PUT'
     )]
+    #[IsGranted(
+        'VIEW',
+        subject: 'user'
+    )]
     public function myAccount(User $user): Response
     {
         return $this->render(
@@ -120,6 +127,10 @@ class UserController extends AbstractController
         name: 'user_edit',
         requirements: ['id' => '[1-9]\d*'],
         methods: 'GET|PUT'
+    )]
+    #[IsGranted(
+        'EDIT',
+        subject: 'user'
     )]
     public function edit(Request $request, User $user): Response
     {
@@ -160,14 +171,16 @@ class UserController extends AbstractController
      * @param User    $user    User entity
      *
      * @return Response HTTP Response
-     *
-     * @IsGranted("DELETE", subject="user")
      */
     #[Route(
         '/{id}/delete',
         name: 'user_delete',
         requirements: ['id' => '[1-9]\d*'],
         methods: 'GET|DELETE'
+    )]
+    #[IsGranted(
+        'DELETE',
+        subject: 'user'
     )]
     public function delete(Request $request, User $user): Response
     {
