@@ -7,6 +7,8 @@ namespace App\Service;
 
 use App\Entity\Dog;
 use App\Repository\DogRepository;
+use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\ORM\NoResultException;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
 

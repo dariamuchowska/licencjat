@@ -52,7 +52,7 @@
       </trans-unit>
       <trans-unit id="title.dog_list">
          <source>title.dog_list</source>
-         <target>Dog list</target>
+         <target>Dogs</target>
       </trans-unit>
       <trans-unit id="action.show">
          <source>action.view</source>
@@ -296,6 +296,46 @@
       <trans-unit id="title.email_edit">
         <source>title.email_edit</source>
         <target>Edit email address</target>
+      </trans-unit>
+      <trans-unit id="label.photo_req">
+        <source>label.photo_req</source>
+        <target>Photo</target>
+      </trans-unit>
+      <trans-unit id="action.register">
+        <source>action.register</source>
+        <target>Register</target>
+      </trans-unit>
+      <trans-unit id="message.pass_changed_successfully">
+        <source>message.pass_changed_successfully</source>
+        <target>Password changed successfully</target>
+      </trans-unit>
+      <trans-unit id="message.registered_successfully">
+        <source>message.registered_successfully</source>
+        <target>You have been successfully registered</target>
+      </trans-unit>
+      <trans-unit id="label.register">
+        <source>label.register</source>
+        <target>Register</target>
+      </trans-unit>
+      <trans-unit id="label.email_req">
+        <source>label.email_req</source>
+        <target>Email</target>
+      </trans-unit>
+      <trans-unit id="label.repeatedPassword">
+        <source>label.repeatedPassword</source>
+        <target>Repeated password</target>
+      </trans-unit>
+      <trans-unit id="label.have">
+        <source>label.have</source>
+        <target>Already have an account? Log in here: </target>
+      </trans-unit>
+      <trans-unit id="message.password_match">
+        <source>message.password_match</source>
+        <target>Password doesn't match!</target>
+      </trans-unit>
+      <trans-unit id="help.password">
+        <source>help.password</source>
+        <target>Password should be min. 8 characters long</target>
       </trans-unit>
     </body>
   </file>

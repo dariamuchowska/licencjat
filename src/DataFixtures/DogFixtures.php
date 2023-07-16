@@ -9,13 +9,44 @@ use App\Entity\Dog;
 use App\Entity\Breed;
 use App\Entity\Gender;
 use App\Entity\User;
+use App\Service\FileUploader;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
+use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\HttpFoundation\File\File;
 
 /**
  * Class DogFixtures.
  */
 class DogFixtures extends AbstractBaseFixtures implements DependentFixtureInterface
 {
+    private static array $dogPhotos = [
+        'dog_1.jpeg',
+        'dog_2.jpeg',
+        'dog_3.jpeg',
+        'dog_4.jpeg',
+        'dog_5.png',
+        'dog_6.jpeg',
+        'dog_7.jpeg',
+        'dog_8.jpeg',
+        'dog_9.jpeg',
+        'dog_10.jpeg',
+    ];
+
+    /**
+     * File uploader.
+     *
+     * @var FileUploader File uploader
+     */
+    private FileUploader $fileUploader;
+
+    /**
+     * Constructor.
+     */
+    public function __construct(FileUploader $fileUploader)
+    {
+        $this->fileUploader = $fileUploader;
+    }
+
     /**
      * Load data.
      *
@@ -29,9 +60,9 @@ class DogFixtures extends AbstractBaseFixtures implements DependentFixtureInterf
             return;
         }
 
-        $this->createMany(100, 'dogs', function (int $i) {
+        $this->createMany(10, 'dogs', function (int $i) {
             $dog = new Dog();
-            $dog->setName($this->faker->word());
+            $dog->setName($this->faker->name());
             $dog->setAge($this->faker->numberBetween(1, 19));
             $dog->setDescription($this->faker->paragraphs(2, true));
             /** @var Breed $breed */
@@ -43,6 +74,10 @@ class DogFixtures extends AbstractBaseFixtures implements DependentFixtureInterf
             /** @var Size $size */
             $size = $this->getRandomReference('sizes');
             $dog->setSize($size);
+
+            $dogPhoto = $this->fakeUploadImage();
+            /* @var string $dogPhoto */
+            $dog->setPhotoFilename($dogPhoto);
 
             /** @var User $author */
             $author = $this->getRandomReference('users');
@@ -65,5 +100,21 @@ class DogFixtures extends AbstractBaseFixtures implements DependentFixtureInterf
     public function getDependencies(): array
     {
         return [BreedFixtures::class, GenderFixtures::class, SizeFixtures::class, UserFixtures::class];
+    }
+
+    /**
+     * Fake upload.
+     *
+     * @return string Path
+     */
+    private function fakeUploadImage(): string
+    {
+        $randomImage = $this->faker->randomElement(self::$dogPhotos);
+        $fs = new Filesystem();
+        $targetPath = sys_get_temp_dir().'/'.$randomImage;
+        $fs->copy(__DIR__.'/images/'.$randomImage, $targetPath, true);
+
+        return $this->fileUploader
+            ->upload(new File($targetPath));
     }
 }

@@ -1,0 +1,46 @@
+{#
+Default template for create forms.
+
+parameters:
+    - page_title: page title
+    - form: form view variable
+    - submit_label: label for submit button
+#}
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ page_title }}
+{% endblock %}
+
+{% block body %}
+    <div class="d-flex justify-content-center" id="form">
+        <div class="row col-8">
+            <div class="form-outline">
+                <h1 class="h1">{{ page_title }}</h1>
+                <p class="fw-light">{{ 'label.required'|trans }}</p>
+                {{ form_start(form) }}
+                {% if false == form.vars.valid %}
+                    {% include 'default/_single_alert_message.html.twig' with {
+                        type: 'danger',
+                        message: 'message.form_error'|trans,
+                    } %}
+                {% endif %}
+                {{ form_widget(form) }}
+                <div class="container-fluid d-flex justify-content-end">
+                    <div class="form-group row float-lg-right">
+                        <input type="submit" value="{{ submit_label }}"
+                               class="btn btn-secondary btn-lg"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {#    {% if back_to_list_path|default(false) %}#}
+    {#        <div class="form-group row float-sm-left">#}
+    {#            <a href="{{ url(back_to_list_path) }}" class="btn btn-link">#}
+    {#                {{ 'action.back_to_list'|trans }}#}
+    {#            </a>#}
+    {#        </div>#}
+    {#    {% endif %}#}
+    {{ form_end(form) }}
+{% endblock %}

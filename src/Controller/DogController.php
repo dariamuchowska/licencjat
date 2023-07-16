@@ -6,9 +6,10 @@
 namespace App\Controller;
 
 use App\Entity\Dog;
-use App\Entity\User;
 use App\Form\DogType;
+use App\Entity\User;
 use App\Service\DogServiceInterface;
+use App\Service\FileUploader;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
@@ -101,20 +102,23 @@ class DogController extends AbstractController
         name: 'dog_create',
         methods: 'GET|POST',
     )]
-    public function create(Request $request): Response
+    public function create(Request $request, FileUploader $fileUploader): Response
     {
         /** @var User $user */
         $user = $this->getUser();
         $dog = new Dog();
         $dog->setAuthor($user);
-        $form = $this->createForm(
-            DogType::class,
-            $dog,
-            ['action' => $this->generateUrl('dog_create')]
-        );
+
+        $form = $this->createForm(DogType::class, $dog);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $photoFile = $form->get('photo')->getData();
+            if ($photoFile) {
+                $photoFilename = $fileUploader->upload($photoFile);
+                $dog->setPhotoFilename($photoFilename);
+            }
+
             $this->dogService->save($dog);
 
             $this->addFlash(
@@ -149,7 +153,7 @@ class DogController extends AbstractController
         'EDIT',
         subject: 'dog'
     )]
-    public function edit(Request $request, Dog $dog): Response
+    public function edit(Request $request, Dog $dog, FIleUploader $fileUploader): Response
     {
         $form = $this->createForm(
             DogType::class,
@@ -162,6 +166,11 @@ class DogController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $photoFilename = $form->get('photo')->getData();
+            if ($photoFilename) {
+                $photoFilename = $fileUploader->upload($photoFilename);
+                $dog->setPhotoFilename($photoFilename);
+            }
             $this->dogService->save($dog);
 
             $this->addFlash(

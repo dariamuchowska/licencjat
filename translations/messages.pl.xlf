@@ -52,7 +52,7 @@
       </trans-unit>
       <trans-unit id="title.dog_list">
          <source>title.dog_list</source>
-         <target>Lista psiaków</target>
+         <target>Pieski</target>
       </trans-unit>
       <trans-unit id="action.show">
          <source>action.view</source>
@@ -297,6 +297,46 @@
       <trans-unit id="title.email_edit">
         <source>title.email_edit</source>
         <target>Edytuj adres email</target>
+      </trans-unit>
+      <trans-unit id="label.photo_req">
+        <source>label.photo_req</source>
+        <target>Zdjęcie</target>
+      </trans-unit>
+      <trans-unit id="action.registerq">
+        <source>action.register</source>
+        <target>Rejestracja</target>
+      </trans-unit>
+      <trans-unit id="message.pass_changed_successfully">
+        <source>message.pass_changed_successfully</source>
+        <target>Hasło zostało pomyślnie zmienione</target>
+      </trans-unit>
+      <trans-unit id="message.registered_successfully">
+        <source>message.registered_successfully</source>
+        <target>Twoje konto zostało pomyślnie zarejestrowane!</target>
+      </trans-unit>
+      <trans-unit id="label.register">
+        <source>label.register</source>
+        <target>Zarejestruj się</target>
+      </trans-unit>
+      <trans-unit id="label.email_req">
+        <source>label.email_req</source>
+        <target>Email</target>
+      </trans-unit>
+      <trans-unit id="label.repeatedPassword">
+        <source>label.repeatedPassword</source>
+        <target>Powtórz hasło</target>
+      </trans-unit>
+      <trans-unit id="label.have">
+        <source>label.have</source>
+        <target>Masz już konto? Zaloguj się tutaj: </target>
+      </trans-unit>
+      <trans-unit id="message.password_match">
+        <source>message.password_match</source>
+        <target>Hasła muszą do siebie pasować.</target>
+      </trans-unit>
+      <trans-unit id="help.password">
+        <source>help.password</source>
+        <target>Hasło musi zawierać co najmniej 8 znaków.</target>
       </trans-unit>
     </body>
   </file>

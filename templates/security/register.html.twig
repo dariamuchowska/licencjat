@@ -1,10 +1,45 @@
-{% include 'default/_form.html.twig' with {
-    page_title: 'action.password_change'|trans,
-    page_title_param: {'%id%': user.id},
-    attr: {
-        method: 'PUT',
-        action: url('app_change-password', {'id': user.id}),
-    },
-    submit_label: 'action.save'|trans,
-    back_to_list_path: 'book_index',
-} %}
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container d-flex justify-content-center" id="form">
+        <form method="post" class="col-4">
+            {% if app.user %}
+                <div class="mb-3">
+                    {{ 'label.logged'|trans }} {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">{{ 'action.logout'|trans }}</a>
+                </div>
+            {% endif %}
+            {{ form_start(form) }}
+            <h1 class="h3 mb-3 font-weight-normal">{{ 'label.register'|trans }}</h1>
+
+            <!-- Email input -->
+            <div class="form-outline mb-4">
+                <label class="required" for="user_email">{{ 'label.email_req'|trans }}</label>
+                {{ form_widget(form.email) }}
+                {{ form_errors(form.email) }}
+            </div>
+            <!-- Password input -->
+            <div class="form-outline mb-4">
+                <label class="required" for="user_password_first">{{ 'label.password'|trans }}</label>
+                {{ form_widget(form.password.first) }}
+                {{ form_errors(form.password.first) }}
+            </div>
+            <!-- Repeated password input -->
+            <div class="form-outline mb-4">
+                <label class="required" for="user_password_second">{{ 'label.repeatedPassword'|trans }}</label>
+                {{ form_widget(form.password.second) }}
+                {{ form_errors(form.password.second) }}
+            </div>
+            <!-- Submit button -->
+            <button class="btn btn-primary btn-block mb-4" type="submit">
+                {{ 'action.register'|trans }}
+            </button>
+            {{ form_end(form) }}
+        </form>
+    </div>
+    <div class="container d-flex justify-content-center">
+        <div class="col-4" id="reglog">
+            {{ 'label.have'|trans }}
+            <a href="{{ url('app_login') }}" title="{{ 'action.login'|trans }}">{{ 'action.login'|trans }}</a>
+        </div>
+    </div>
+{% endblock %}

@@ -12,57 +12,21 @@
             <a role="button" class="btn btn-outline-success" id="create-btn" href="{{ url('dog_create') }}" title="{{ 'action.create'|trans }}">{{ 'action.create'|trans }}</a>
         </div>
 
-
-        <div class="navigation text-center">
-            {{ knp_pagination_render(pagination) }}
-        </div>
-
-        <table class="table table-striped">
-            <thead>
-            <tr>
-                <th>{{ knp_pagination_sortable(pagination, 'label.name'|trans, 'dog.name') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'label.breed'|trans, 'breed.name') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'label.age'|trans, 'dog.age') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'label.gender'|trans, 'gender.name') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'label.size'|trans, 'size.name') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'label.description'|trans, 'dog.description') }}</th>
-                <th>{{ 'label.author'|trans }}</th>
-                <th>{{ 'label.actions'|trans }}</th>
-            </tr>
-            </thead>
-            <tbody>
+        <div class="d-flex justify-content-center flex-wrap" id="display-container">
             {% for dog in pagination.items %}
-                <tr>
-                    <td>{{ dog.name }}</td>
-                    <td>{{ dog.breed.name }}</td>
-                    <td>{{ dog.age }}</td>
-                    <td>{{ dog.gender }}</td>
-                    <td>{{ dog.size }}</td>
-                    <td>{{ dog.description }}</td>
-                    <td>{{ dog.author }}</td>
-                    <td>
+                <div class="card text-center">
+                    <figure><img class="card-img-top img-fluid" id="dog-card-img"
+                                 src="{{ asset(photos_directory~dog.photoFilename) }}" alt="{{ dog.name }}"></figure>
+                    <div class="card-body" id="dog-card-body">
+                        <a href="{{ url('dog_show', {id: dog.id}) }}" title="{{ 'action.view'|trans }}" id="view-btn" style="text-decoration: none"><h5 class="card-title" id="dog-card-title">{{ dog.name }}</h5></a>
                         <a class="btn btn-outline-primary" href="{{ url('dog_show', {id: dog.id}) }}" title="{{ 'action.view'|trans }}">
                             {{ 'action.view'|trans }}
                         </a>
-                    </td>
-                    <td>
-                        {% if is_granted('EDIT', dog) %}
-                            <a class="btn btn-outline-success" href="{{ url('dog_edit', {id: dog.id}) }}" title="{{ 'action.edit'|trans }}">
-                                {{ 'action.edit'|trans }}
-                            </a>
-                        {% endif %}
-                    </td>
-                    <td>
-                        {% if is_granted('DELETE', dog) %}
-                            <a class="btn btn-outline-danger" href="{{ url('dog_delete', {id: dog.id}) }}" title="{{ 'action.delete'|trans }}">
-                                {{ 'action.delete'|trans }}
-                            </a>
-                        {% endif %}
-                    </td>
-                </tr>
+                    </div>
+                </div>
             {% endfor %}
-            </tbody>
-        </table>
+        </div>
+
         <!-- Pagination -->
         <div class="navigation text-center">
             {{ knp_pagination_render(pagination) }}

@@ -12,18 +12,18 @@ use App\Entity\Size;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\ORM\NoResultException;
 
 /**
  * Class DogRepository.
- *
- * @extends ServiceEntityRepository<Dog>
  *
  * @method Dog|null find($id, $lockMode = null, $lockVersion = null)
  * @method Dog|null findOneBy(array $criteria, array $orderBy = null)
  * @method Dog[]    findAll()
  * @method Dog[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  *
- * @psalm-suppress LessSpecificImplementedReturnType
+ * @extends ServiceEntityRepository<Dog>
  */
 class DogRepository extends ServiceEntityRepository
 {
@@ -57,7 +57,7 @@ class DogRepository extends ServiceEntityRepository
     {
         return $this->getOrCreateQueryBuilder()
             ->select(
-                'partial dog.{id, name, age, description}',
+                'partial dog.{id, name, age, description, photoFilename}',
                 'partial breed.{id, name}',
                 'partial size.{id, name}',
                 'partial gender.{id, name}'

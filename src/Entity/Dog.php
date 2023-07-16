@@ -168,7 +168,7 @@ class Dog
     }
 
     /**
-     * Getter for photo Filename.
+     * Getter for photos Filename.
      *
      * @return string|null Photo filename
      */
