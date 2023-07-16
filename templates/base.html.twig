@@ -17,43 +17,41 @@
 <header>
     <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container-fluid" id="nav-container">
-            <!-- Logo will be here -->
-            <a class="navbar-brand" href="#">
-                <img src="{{ asset('uploads/logo/Logo.png') }}" width="50" height="50">  PetLink</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+            <a class="navbar-brand" href="{{ url('app_index') }}" >{{ 'title.app'|trans }}</a>
             <!-- Nav links -->
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto d-flex align-items-start">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url('dog_index') }}">{{ 'title.dogs'|trans }}</a>
-                    </li>
                     {% if is_granted('ROLE_ADMIN') %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('breed_index') }}">{{ 'title.breeds'|trans }}</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('gender_index') }}">{{ 'title.genders'|trans }}</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('size_index') }}">{{ 'title.sizes'|trans }}</a>
-                        </li>
-                    {% endif %}
-                    {% if is_granted('ROLE_ADMIN', app.user) %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('user_index') }}">{{ 'title.users'|trans }}</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                {{ 'title.admin_panel'|trans }}
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href="{{ url('breed_index') }}">{{ 'title.breeds'|trans }}</a>
+                                <a class="dropdown-item" href="{{ url('gender_index') }}">{{ 'title.genders'|trans }}</a>
+                                <a class="dropdown-item" href="{{ url('size_index') }}">{{ 'title.sizes'|trans }}</a>
+                                <a class="dropdown-item" href="{{ url('user_index') }}">{{ 'title.users'|trans }}</a>
+                            </div>
                         </li>
                     {% endif %}
                     {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                {{ 'title.user'|trans }}: {{ app.user.username }}
+                                {{ 'title.dogs'|trans }}
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href="{{ url('dog_index') }}">{{ 'action.browse'|trans }}</a>
+                                <a class="dropdown-item" href="{{ url('dog_create') }}">{{ 'action.create'|trans }}</a>
+                            </div>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                {{ 'title.manage_account'|trans }}
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                 <a class="dropdown-item" href="{{ url('user_account', {id: app.user.id}) }}">{{ 'action.account'|trans }}</a>
                                 <a class="dropdown-item" href="{{ url('app_change-password', {id: app.user.id}) }}">{{ 'action.password_change'|trans }}</a>
                             </div>
+                        </li>
                         <li class="nav-item">
                             <a class="btn btn-secondary" role="button" href="{{ url('app_logout') }}">{{ 'action.logout'|trans }}</a>
                         </li>

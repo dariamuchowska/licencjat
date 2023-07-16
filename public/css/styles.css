@@ -359,11 +359,6 @@ input.btn.btn-secondary.btn-lg {
     margin-top: 10em;
 }
 
-#artwork-show-buttons {
-    margin-top: 1em;
-    margin-bottom: 1em;
-}
-
 #input-show-img, #dog-show-img {
     height: 32vw;
     width: 40vw;
@@ -381,18 +376,6 @@ a.text-decoration-none:hover {
 
 #dog-card-body, #input-card-body {
     padding: 0.5em 1em 1.5em;
-}
-
-#artworks {
-    width: 10vw;
-    height: 10vw;
-    object-fit: cover;
-    border-radius: 5%;
-    margin-top: 0.3em;
-}
-
-#artworks-img {
-    border-radius: 5%;
 }
 
 #figure {

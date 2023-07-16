@@ -191,7 +191,7 @@
       </trans-unit>
       <trans-unit id="title.dogs">
         <source>title.dogs</source>
-        <target>Dogs</target>
+        <target>Animals</target>
       </trans-unit>
       <trans-unit id="title.breeds">
         <source>title.breeds</source>
@@ -336,6 +336,42 @@
       <trans-unit id="help.password">
         <source>help.password</source>
         <target>Password should be min. 8 characters long</target>
+      </trans-unit>
+      <trans-unit id="title.app">
+        <source>title.app</source>
+        <target>PetLink</target>
+      </trans-unit>
+      <trans-unit id="label.logged">
+        <source>label.logged</source>
+        <target>You are already logged in.</target>
+      </trans-unit>
+      <trans-unit id="label.welcome">
+        <source>label.welcome</source>
+        <target>Welcome!</target>
+      </trans-unit>
+      <trans-unit id="label.donthave">
+        <source>label.dontHave</source>
+        <target>Don't have an account? Register here: </target>
+      </trans-unit>
+      <trans-unit id="action.browse">
+        <source>action.browse</source>
+        <target>Browse</target>
+      </trans-unit>
+      <trans-unit id="title.manage_account">
+        <source>title.manage_account</source>
+        <target>My account</target>
+      </trans-unit>
+      <trans-unit id="label.required">
+        <source>label.required</source>
+        <target>Required</target>
+      </trans-unit>
+      <trans-unit id="action.view_more">
+        <source>action.view_more</source>
+        <target>Show more</target>
+      </trans-unit>
+      <trans-unit id="title.admin_panel">
+        <source>title.admin_panel</source>
+        <target>Admin panel</target>
       </trans-unit>
     </body>
   </file>

@@ -1,41 +1,47 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    {{ 'title.dog_details'|trans({'%id%': dog.id|default('')}) }}
+    {{ 'title.dog_details'|trans }}
 {% endblock %}
 
 {% block body %}
-    <h1>{{ 'title.dog_details'|trans({'%id%': dog.id|default('')}) }}</h1>
-    {% if dog is defined and dog|length %}
-        <dl class="dl-horizontal">
-            <dt>{{ 'label.name'|trans }}</dt>
-            <dd>{{ dog.name }}</dd>
-            <dt>{{ 'label.breed'|trans }}</dt>
-            <dd>{{  dog.breed.name }}</dd>
-            <dt>{{ 'label.age'|trans }}</dt>
-            <dd>{{ dog.age }}</dd>
-            <dt>{{ 'label.gender'|trans }}</dt>
-            <dd>{{ dog.gender }}</dd>
-            <dt>{{ 'label.size'|trans }}</dt>
-            <dd>{{ dog.size }}</dd>
-            <dt>{{ 'label.description'|trans }}</dt>
-            <dd>{{  dog.description }}</dd>
-        </dl>
-        <p>
-            <a href="{{ url('dog_index') }}" title="{{ 'action.back_to_list'|trans }}">
-                {{ 'action.back_to_list'|trans }}
-            </a>
-        </p>
-        <div class="col d-flex justify-content-end">
-        {% if dog.photoFilename is defined and dog.photoFilename|length %}
-            <figure>
-                <img class="img-fluid" id="dog-show-img" src="{{ asset(photos_directory~dog.photoFilename) }}" alt="{{ dog.name }}">
-            </figure>
-        {% endif %}
+    <div class="d-flex justify-content-center" id="show">
+        <div class="row col-10">
+            <h1 class="h1 font font-weigh-normal">{{ dog.name }}</h1>
+            {% if dog is defined and dog|length %}
+            <div class="row">
+                <div class="col">
+                    <div class="data">
+                        <div class="horizontal">
+                            <dt>{{ 'label.breed'|trans }}</dt>
+                            <dd>{{ dog.breed.name }}</dd>
+                            <dt>{{ 'label.age'|trans }}</dt>
+                            <dd>{{ dog.age }}</dd>
+                            <dt>{{ 'label.gender'|trans }}</dt>
+                            <dd>{{ dog.gender }}</dd>
+                            <dt>{{ 'label.size'|trans }}</dt>
+                            <dd>{{ dog.size }}</dd>
+                            <dt>{{ 'label.description'|trans }}</dt>
+                            <dd>{{  dog.description }}</dd>
+                        </div>
+                    </div>
+                </div>
+                <div class="col d-flex justify-content-end">
+                    {% if dog.photoFilename is defined and dog.photoFilename|length %}
+                        <figure>
+                            <img class="img-fluid" id="dog-show-img" src="{{ asset(photos_directory~dog.photoFilename) }}" alt="{{ dog.name }}">
+                        </figure>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="roow" id="dog-index-btn">
+                <a role="button" id="view-btn" class="btn btn-info btn-sm" href="{{ url('dog_index') }}" title="{{ 'action.view_more'|trans }}">{{ 'action.view_more'|trans }}</a>
+            </div>
         </div>
-    {% else %}
-        <p>
-            {{ 'message.record_not_found'|trans }}
-        </p>
-    {% endif %}
+        {% else %}
+            <p>
+                {{ 'message.record_not_found'|trans }}
+            </p>
+        {% endif %}
+    </div>
 {% endblock %}

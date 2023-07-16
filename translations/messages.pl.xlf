@@ -192,7 +192,7 @@
       </trans-unit>
       <trans-unit id="title.dogs">
         <source>title.dogs</source>
-        <target>Psiaki</target>
+        <target>Zwierzaki</target>
       </trans-unit>
       <trans-unit id="title.breeds">
         <source>title.breeds</source>
@@ -337,6 +337,42 @@
       <trans-unit id="help.password">
         <source>help.password</source>
         <target>Hasło musi zawierać co najmniej 8 znaków.</target>
+      </trans-unit>
+      <trans-unit id="title.app">
+        <source>title.app</source>
+        <target>PetLink</target>
+      </trans-unit>
+      <trans-unit id="label.logged">
+        <source>label.logged</source>
+        <target>Jesteś już zalogowany/a.</target>
+      </trans-unit>
+      <trans-unit id="label.welcome">
+        <source>label.welcome</source>
+        <target>Witaj!</target>
+      </trans-unit>
+      <trans-unit id="label.donthave">
+        <source>label.dontHave</source>
+        <target>Nie masz konta? Zarejestruj się tutaj: </target>
+      </trans-unit>
+      <trans-unit id="action.browse">
+        <source>action.browse</source>
+        <target>Przeglądaj</target>
+      </trans-unit>
+      <trans-unit id="title.manage_account">
+        <source>title.manage_account</source>
+        <target>Moje konto</target>
+      </trans-unit>
+      <trans-unit id="label.required">
+        <source>label.required</source>
+        <target>Wymagane</target>
+      </trans-unit>
+      <trans-unit id="action.view_more">
+        <source>action.view_more</source>
+        <target>Pokaż więcej zwierzaków</target>
+      </trans-unit>
+      <trans-unit id="title.admin_panel">
+        <source>title.admin_panel</source>
+        <target>Panel administratora</target>
       </trans-unit>
     </body>
   </file>

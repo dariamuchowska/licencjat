@@ -32,7 +32,7 @@
                     <td>{{ gender.id }}</td>
                     <td>{{ gender.name }}</td>
                     <td>
-                        <a href="{{ url('gender_show', {id: gender.id}) }}" title="{{ 'action.view'|trans }}">
+                        <a class="btn btn-outline-primary" href="{{ url('gender_show', {id: gender.id}) }}" title="{{ 'action.view'|trans }}">
                             {{ 'action.view'|trans }}
                         </a>
                     </td>

@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ 'title.app'|trans }}
+{% endblock %}
+
+{% block body %}
+    <div id="indexCarousel" class="carousel slide carousel-dark" data-bs-interval="false">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="{{ asset('css/friend_forever.png') }}" class="d-block w-100" alt="Two dogs and two women on a walk.">
+                <a href="{{ url('dog_index') }}" title="{{ 'action.view'|trans }}">
+                    <div class="carousel-caption">
+                        <h1>{{ 'Poznaj z nami swojego nowego czworonożnego przyjaciela!' }}</h1>
+                        <p style="margin-top: 1em;">{{ 'Zobacz więcej' }}</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -8,10 +8,6 @@
     <h1>{{ 'title.dog_list'|trans }}</h1>
     {% if pagination is defined and pagination.items|length %}
 
-        <div class="col-1">
-            <a role="button" class="btn btn-outline-success" id="create-btn" href="{{ url('dog_create') }}" title="{{ 'action.create'|trans }}">{{ 'action.create'|trans }}</a>
-        </div>
-
         <div class="d-flex justify-content-center flex-wrap" id="display-container">
             {% for dog in pagination.items %}
                 <div class="card text-center">
@@ -19,9 +15,6 @@
                                  src="{{ asset(photos_directory~dog.photoFilename) }}" alt="{{ dog.name }}"></figure>
                     <div class="card-body" id="dog-card-body">
                         <a href="{{ url('dog_show', {id: dog.id}) }}" title="{{ 'action.view'|trans }}" id="view-btn" style="text-decoration: none"><h5 class="card-title" id="dog-card-title">{{ dog.name }}</h5></a>
-                        <a class="btn btn-outline-primary" href="{{ url('dog_show', {id: dog.id}) }}" title="{{ 'action.view'|trans }}">
-                            {{ 'action.view'|trans }}
-                        </a>
                     </div>
                 </div>
             {% endfor %}
