@@ -59,9 +59,11 @@ class DogController extends AbstractController
     )]
     public function index(Request $request): Response
     {
-        $pagination = $this->dogService->getPaginatedList(
-            $request->query->getInt('page', 1)
-        );
+        $user = $this->getUser();
+        $filters = $this->getFilters($request);
+        $page = $request->query->getInt('page', 1);
+        $pagination = $this->dogService->getPaginatedList($page, $filters, $user);
+
 
         return $this->render(
             'dog/index.html.twig',
@@ -234,5 +236,24 @@ class DogController extends AbstractController
                 'dog' => $dog,
             ]
         );
+    }
+
+    /**
+     * Get filters from request.
+     *
+     * @param Request $request HTTP request
+     *
+     * @return array<string, int> Array of filters
+     *
+     * @psalm-return array{breed_id: int, size_id: int, gender_id: int, status_id: int}
+     */
+    private function getFilters(Request $request): array
+    {
+        $filters = [];
+        $filters['breed_id'] = $request->query->getInt('filters_breed_id');
+        $filters['size_id'] = $request->query->getInt('filters_size_id');
+        $filters['gender_id'] = $request->query->getInt('filters_gender_id');
+
+        return $filters;
     }
 }

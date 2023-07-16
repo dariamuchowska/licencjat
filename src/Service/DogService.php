@@ -11,6 +11,7 @@ use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\NoResultException;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * Class DogService.
@@ -28,13 +29,34 @@ class DogService implements DogServiceInterface
     private PaginatorInterface $paginator;
 
     /**
+     * Breed service.
+     */
+    private BreedServiceInterface $breedService;
+
+    /**
+     * Size service.
+     */
+    private SizeServiceInterface $sizeService;
+
+    /**
+     * Gender service.
+     */
+    private GenderServiceInterface $genderService;
+
+    /**
      * Constructor.
      *
-     * @param DogRepository     $dogRepository Dog repository
-     * @param PaginatorInterface $paginator      Paginator
+     * @param DogRepository          $dogRepository Dog repository
+     * @param BreedServiceInterface  $breedService  Breed service
+     * @param SizeServiceInterface   $sizeService   Size service
+     * @param GenderServiceInterface $genderService Gender service
+     * @param PaginatorInterface     $paginator     Paginator
      */
-    public function __construct(DogRepository $dogRepository, PaginatorInterface $paginator)
+    public function __construct(DogRepository $dogRepository, BreedServiceInterface $breedService, SizeServiceInterface $sizeService, GenderServiceInterface $genderService, PaginatorInterface $paginator)
     {
+        $this->breedService = $breedService;
+        $this->sizeService = $sizeService;
+        $this->genderService = $genderService;
         $this->dogRepository = $dogRepository;
         $this->paginator = $paginator;
     }
@@ -56,14 +78,20 @@ class DogService implements DogServiceInterface
     /**
      * Get paginated list.
      *
-     * @param int $page Page number
+     * @param int                $page    Page number
+     * @param array              $filters Filters
+     * @param UserInterface|null $user    User
      *
      * @return PaginationInterface<string, mixed> Paginated list
+     *
+     * @throws NonUniqueResultException
      */
-    public function getPaginatedList(int $page): PaginationInterface
+    public function getPaginatedList(int $page, array $filters = [], UserInterface $user = null): PaginationInterface
     {
+        $filters = $this->prepareFilters($filters);
+
         return $this->paginator->paginate(
-            $this->dogRepository->queryAll(),
+            $this->dogRepository->queryAll($filters, $user),
             $page,
             DogRepository::PAGINATOR_ITEMS_PER_PAGE
         );
@@ -87,5 +115,41 @@ class DogService implements DogServiceInterface
     public function delete(Dog $dog): void
     {
         $this->dogRepository->delete($dog);
+    }
+
+    /**
+     * Prepare filters for the dogs list.
+     *
+     * @param array<string, int> $filters Raw filters from request
+     *
+     * @return array<string, object> Result array of filters
+     *
+     * @throws NonUniqueResultException
+     */
+    private function prepareFilters(array $filters): array
+    {
+        $resultFilters = [];
+        if (!empty($filters['breed_id'])) {
+            $breed = $this->breedService->findOneById($filters['breed_id']);
+            if (null !== $breed) {
+                $resultFilters['breed'] = $breed;
+            }
+        }
+
+        if (!empty($filters['size_id'])) {
+            $size = $this->sizeService->findOneById($filters['size_id']);
+            if (null !== $size) {
+                $resultFilters['size'] = $size;
+            }
+        }
+
+        if (!empty($filters['gender_id'])) {
+            $gender = $this->genderService->findOneById($filters['gender_id']);
+            if (null !== $gender) {
+                $resultFilters['gender'] = $gender;
+            }
+        }
+
+        return $resultFilters;
     }
 }

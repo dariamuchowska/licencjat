@@ -21,19 +21,6 @@
             <!-- Nav links -->
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto d-flex align-items-start">
-                    {% if is_granted('ROLE_ADMIN') %}
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                {{ 'title.admin_panel'|trans }}
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item" href="{{ url('breed_index') }}">{{ 'title.breeds'|trans }}</a>
-                                <a class="dropdown-item" href="{{ url('gender_index') }}">{{ 'title.genders'|trans }}</a>
-                                <a class="dropdown-item" href="{{ url('size_index') }}">{{ 'title.sizes'|trans }}</a>
-                                <a class="dropdown-item" href="{{ url('user_index') }}">{{ 'title.users'|trans }}</a>
-                            </div>
-                        </li>
-                    {% endif %}
                     {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -52,6 +39,19 @@
                                 <a class="dropdown-item" href="{{ url('app_change-password', {id: app.user.id}) }}">{{ 'action.password_change'|trans }}</a>
                             </div>
                         </li>
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    {{ 'title.admin_panel'|trans }}
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <a class="dropdown-item" href="{{ url('breed_index') }}">{{ 'title.breeds'|trans }}</a>
+                                    <a class="dropdown-item" href="{{ url('gender_index') }}">{{ 'title.genders'|trans }}</a>
+                                    <a class="dropdown-item" href="{{ url('size_index') }}">{{ 'title.sizes'|trans }}</a>
+                                    <a class="dropdown-item" href="{{ url('user_index') }}">{{ 'title.users'|trans }}</a>
+                                </div>
+                            </li>
+                        {% endif %}
                         <li class="nav-item">
                             <a class="btn btn-secondary" role="button" href="{{ url('app_logout') }}">{{ 'action.logout'|trans }}</a>
                         </li>

@@ -36,7 +36,7 @@ class DogRepository extends ServiceEntityRepository
      *
      * @constant int
      */
-    public const PAGINATOR_ITEMS_PER_PAGE = 5;
+    public const PAGINATOR_ITEMS_PER_PAGE = 8;
 
     /**
      * Constructor.
@@ -49,13 +49,33 @@ class DogRepository extends ServiceEntityRepository
     }
 
     /**
+     * Query dogs by author.
+     *
+     * @param UserInterface         $user    User entity
+     * @param array<string, object> $filters Filters
+     *
+     * @return QueryBuilder Query builder
+     */
+    public function queryByAuthor(UserInterface $user, array $filters = []): QueryBuilder
+    {
+        $queryBuilder = $this->queryAll($filters);
+
+        $queryBuilder->andWhere('dog.author = :author')
+            ->setParameter('author', $user);
+
+        return $queryBuilder;
+    }
+
+    /**
      * Query all records.
+     *
+     * @param array<string, object> $filters Filters
      *
      * @return \Doctrine\ORM\QueryBuilder Query builder
      */
-    public function queryAll(): QueryBuilder
+    public function queryAll(array $filters): QueryBuilder
     {
-        return $this->getOrCreateQueryBuilder()
+        $queryBuilder = $this->getOrCreateQueryBuilder()
             ->select(
                 'partial dog.{id, name, age, description, photoFilename}',
                 'partial breed.{id, name}',
@@ -66,6 +86,8 @@ class DogRepository extends ServiceEntityRepository
             ->join('dog.size', 'size')
             ->join('dog.gender', 'gender')
             ->orderBy('dog.id', 'ASC');
+
+        return $this->applyFiltersToList($queryBuilder, $filters);
     }
 
     /**
@@ -163,5 +185,67 @@ class DogRepository extends ServiceEntityRepository
             ->setParameter(':size', $size)
             ->getQuery()
             ->getSingleScalarResult();
+    }
+
+    /**
+     * Prepare filters for the dogs list.
+     *
+     * @param array<string, int> $filters Raw filters from request
+     *
+     * @return array<string, object> Result array of filters
+     */
+    private function prepareFilters(array $filters): array
+    {
+        $resultFilters = [];
+        if (!empty($filters['breed_id'])) {
+            $breed = $this->breedService->findOneById($filters['breed_id']);
+            if (null !== $breed) {
+                $resultFilters['breed'] = $breed;
+            }
+        }
+
+        if (!empty($filters['size_id'])) {
+            $size = $this->sizeService->findOneById($filters['size_id']);
+            if (null !== $size) {
+                $resultFilters['size'] = $size;
+            }
+        }
+
+        if (!empty($filters['gender_id'])) {
+            $gender = $this->genderService->findOneById($filters['gender_id']);
+            if (null !== $gender) {
+                $resultFilters['gender'] = $gender;
+            }
+        }
+
+        return $resultFilters;
+    }
+
+    /**
+     * Apply filters to paginated list.
+     *
+     * @param QueryBuilder          $queryBuilder Query builder
+     * @param array<string, object> $filters      Filters array
+     *
+     * @return QueryBuilder Query builder
+     */
+    private function applyFiltersToList(QueryBuilder $queryBuilder, array $filters = []): QueryBuilder
+    {
+        if (isset($filters['breed']) && $filters['breed'] instanceof Breed) {
+            $queryBuilder->andWhere('breed = :breed')
+                ->setParameter('breed', $filters['breed']);
+        }
+
+        if (isset($filters['size']) && $filters['size'] instanceof Size) {
+            $queryBuilder->andWhere('size = :size')
+                ->setParameter('size', $filters['size']);
+        }
+
+        if (isset($filters['gender']) && $filters['gender'] instanceof Gender) {
+            $queryBuilder->andWhere('gender = :gender')
+                ->setParameter('gender', $filters['gender']);
+        }
+
+        return $queryBuilder;
     }
 }

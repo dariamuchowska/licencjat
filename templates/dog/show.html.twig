@@ -36,7 +36,13 @@
             </div>
             <div class="roow" id="dog-index-btn">
                 <a role="button" id="view-btn" class="btn btn-info btn-sm" href="{{ url('dog_index') }}" title="{{ 'action.view_more'|trans }}">{{ 'action.view_more'|trans }}</a>
-            </div>
+            </div><br><br>
+            {% if is_granted('EDIT', dog) %}
+                <div class="roow" id="dog-index-btn">
+                    <a role="button" id="view-btn" class="btn btn-info btn-sm" href="{{ url('dog_edit', {id: dog.id}) }}" title="{{ 'action.edit'|trans }}">{{ 'action.edit'|trans }}</a>
+                </div>
+            {% endif %}
+
         </div>
         {% else %}
             <p>

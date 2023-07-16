@@ -280,7 +280,7 @@
       </trans-unit>
       <trans-unit id="action.account">
         <source>action.account</source>
-        <target>Moje konto</target>
+        <target>Pokaż</target>
       </trans-unit>
       <trans-unit id="label.password_req">
         <source>label.password_req</source>

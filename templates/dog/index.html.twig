@@ -16,6 +16,11 @@
                     <div class="card-body" id="dog-card-body">
                         <a href="{{ url('dog_show', {id: dog.id}) }}" title="{{ 'action.view'|trans }}" id="view-btn" style="text-decoration: none"><h5 class="card-title" id="dog-card-title">{{ dog.name }}</h5></a>
                     </div>
+                    <p>
+                        <a href="{{ url('dog_index', {'filters.breed_id' : dog.breed.id}) }}" title="{{ dog.breed.id }}">{{ dog.breed.name }}</a>
+                        <a href="{{ url('dog_index', {'filters.size_id' : dog.size.id}) }}" title="{{ dog.size.id }}">{{ dog.size.name }}</a>
+                        <a href="{{ url('dog_index', {'filters.gender_id' : dog.gender.id}) }}" title="{{ dog.gender.id }}">{{ dog.gender.name }}</a>
+                    </p>
                 </div>
             {% endfor %}
         </div>

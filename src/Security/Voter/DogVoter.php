@@ -86,6 +86,10 @@ class DogVoter extends Voter
             return false;
         }
 
+        if ($this->security->isGranted('ROLE_ADMIN')) {
+            return true;
+        }
+
         switch ($attribute) {
             case self::EDIT:
                 return $this->canEdit($subject, $user);
