@@ -239,10 +239,8 @@ div.col {
 }
 
 .d-block.w-100 {
-    width: 100vw;
     object-fit: cover;
     -webkit-mask-image: -webkit-gradient(linear, left 50%, left bottom, from(rgba(0,0,0,1.0)), to(rgba(0,0,0,0.1)));
-    height: 45vw;
 }
 
 #indexCarousel {
@@ -271,7 +269,7 @@ h3.text-secondary.text-normal.text-small {
 
 #create-btn {
     margin-top: 1em;
-    margin-left: 7.5rem;
+    margin-left: 1em;
 }
 
 #create-btn-adm {

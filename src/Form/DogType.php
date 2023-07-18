@@ -74,14 +74,6 @@ class DogType extends AbstractType
                 'required' => true,
             ]);
         $builder->add(
-            'description',
-            TextType::class,
-            [
-                'label' => 'label.description',
-                'required' => true,
-                'attr' => ['max_length' => 500],
-            ]);
-        $builder->add(
             'breed',
             EntityType::class,
             [
@@ -116,8 +108,15 @@ class DogType extends AbstractType
                 'label' => 'label.size',
                 'placeholder' => 'label.none',
                 'required' => true,
-            ]
-        );
+            ]);
+        $builder->add(
+            'description',
+            TextType::class,
+            [
+                'label' => 'label.description',
+                'required' => true,
+                'attr' => ['max_length' => 500],
+            ]);
     }
 
     /**

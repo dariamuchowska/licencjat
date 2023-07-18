@@ -72,6 +72,28 @@ class DogController extends AbstractController
     }
 
     /**
+     * Show only user's inputs.
+     *
+     * @param Request $request User request
+     *
+     * @return Response HTTP Response
+     */
+    #[Route(
+        '/my_animals',
+        name: 'my_animals',
+        methods: 'GET'
+    )]
+    public function userInputs(Request $request): Response
+    {
+        $pagination = $this->dogService->getAuthorList(
+            $request->query->getInt('page', 1),
+            $this->getUser()
+        );
+
+        return $this->render('dog/my_animals.html.twig', ['pagination' => $pagination]);
+    }
+
+    /**
      * Show action.
      *
      * @param Dog $dog Dog entity

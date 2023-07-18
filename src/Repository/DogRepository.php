@@ -9,6 +9,7 @@ use App\Entity\Breed;
 use App\Entity\Dog;
 use App\Entity\Gender;
 use App\Entity\Size;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
@@ -49,16 +50,15 @@ class DogRepository extends ServiceEntityRepository
     }
 
     /**
-     * Query dogs by author.
+     * Query by Author.
      *
-     * @param UserInterface         $user    User entity
-     * @param array<string, object> $filters Filters
+     * @param User $user User entity
      *
      * @return QueryBuilder Query builder
      */
-    public function queryByAuthor(UserInterface $user, array $filters = []): QueryBuilder
+    public function queryByAuthor(User $user): QueryBuilder
     {
-        $queryBuilder = $this->queryAll($filters);
+        $queryBuilder = $this->queryAll();
 
         $queryBuilder->andWhere('dog.author = :author')
             ->setParameter('author', $user);
@@ -73,7 +73,7 @@ class DogRepository extends ServiceEntityRepository
      *
      * @return \Doctrine\ORM\QueryBuilder Query builder
      */
-    public function queryAll(array $filters): QueryBuilder
+    public function queryAll(array $filters = []): QueryBuilder
     {
         $queryBuilder = $this->getOrCreateQueryBuilder()
             ->select(

@@ -21,12 +21,16 @@
             <!-- Nav links -->
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto d-flex align-items-start">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url('app_info') }}">{{ 'title.info'|trans }}</a>
+                    </li>
                     {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 {{ 'title.dogs'|trans }}
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href="{{ url('my_animals') }}">{{ 'action.view_my_animals'|trans }}</a>
                                 <a class="dropdown-item" href="{{ url('dog_index') }}">{{ 'action.browse'|trans }}</a>
                                 <a class="dropdown-item" href="{{ url('dog_create') }}">{{ 'action.create'|trans }}</a>
                             </div>
@@ -56,6 +60,7 @@
                             <a class="btn btn-secondary" role="button" href="{{ url('app_logout') }}">{{ 'action.logout'|trans }}</a>
                         </li>
                     {% else %}
+                        <a class="nav-link" href="{{ url('dog_index') }}">{{ 'title.dog_list'|trans }}</a>
                         <li class="nav-item" id="btn-nav">
                             <a class="btn btn-secondary" role="button" href="{{ url('app_login') }}">{{ 'action.login'|trans }}</a>
                         </li>

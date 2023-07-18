@@ -6,6 +6,7 @@
 namespace App\Service;
 
 use App\Entity\Dog;
+use App\Entity\User;
 use App\Repository\DogRepository;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\NoResultException;
@@ -92,6 +93,23 @@ class DogService implements DogServiceInterface
 
         return $this->paginator->paginate(
             $this->dogRepository->queryAll($filters, $user),
+            $page,
+            DogRepository::PAGINATOR_ITEMS_PER_PAGE
+        );
+    }
+
+    /**
+     * Filter by author.
+     *
+     * @param int  $page   Page number
+     * @param User $author Author
+     *
+     * @return PaginationInterface<string, mixed> Paginated list
+     */
+    public function getAuthorList(int $page, User $author): PaginationInterface
+    {
+        return $this->paginator->paginate(
+            $this->dogRepository->queryByAuthor($author),
             $page,
             DogRepository::PAGINATOR_ITEMS_PER_PAGE
         );

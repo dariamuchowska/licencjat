@@ -27,6 +27,16 @@ interface DogServiceInterface
     public function getPaginatedList(int $page, array $filters = [], UserInterface $user = null): PaginationInterface;
 
     /**
+     * Filter by author.
+     *
+     * @param int  $page   Page number
+     * @param User $author Author
+     *
+     * @return PaginationInterface<string, mixed> Paginated list
+     */
+    public function getAuthorList(int $page, User $author): PaginationInterface;
+
+    /**
      * Save entity.
      *
      * @param Dog $dog Dog entity

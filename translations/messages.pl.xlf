@@ -120,7 +120,7 @@
       </trans-unit>
       <trans-unit id="title.dog_create">
         <source>title.dog_create</source>
-        <target>Jaki psiak szuka domu?</target>
+        <target>Dodaj zwierzaka</target>
       </trans-unit>
       <trans-unit id="label.none">
         <source>label.none</source>
@@ -373,6 +373,38 @@
       <trans-unit id="title.admin_panel">
         <source>title.admin_panel</source>
         <target>Panel administratora</target>
+      </trans-unit>
+      <trans-unit id="title.info">
+        <source>title.info</source>
+        <target>O serwisie</target>
+      </trans-unit>
+      <trans-unit id="label.owner">
+        <source>label.owner</source>
+        <target>Kontakt z właścicielem</target>
+      </trans-unit>
+      <trans-unit id="label.about_me">
+        <source>label.about_me</source>
+        <target>O mnie:</target>
+      </trans-unit>
+      <trans-unit id="title.user_delete">
+        <source>title.user_delete</source>
+        <target>Usuń użytkownika %id%</target>
+      </trans-unit>
+      <trans-unit id="title.my_dog_list">
+        <source>title.my_dog_list</source>
+        <target>Moje ogłoszenia</target>
+      </trans-unit>
+      <trans-unit id="action.view_my_animals">
+        <source>action.view_my_animals</source>
+        <target>Moje ogłoszenia</target>
+      </trans-unit>
+      <trans-unit id="message.add">
+        <source>message.add</source>
+        <target>Dodaj</target>
+      </trans-unit>
+      <trans-unit id="message.empty_my_dog_list">
+        <source>message.empty_my_dog_list</source>
+        <target>Nie masz żadnych ogłoszeń.</target>
       </trans-unit>
     </body>
   </file>

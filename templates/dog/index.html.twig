@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block body %}
-    <h1>{{ 'title.dog_list'|trans }}</h1>
+    <h1 class="display-3">{{ 'title.dog_list'|trans }}</h1>
     {% if pagination is defined and pagination.items|length %}
 
         <div class="d-flex justify-content-center flex-wrap" id="display-container">
@@ -16,6 +16,7 @@
                     <div class="card-body" id="dog-card-body">
                         <a href="{{ url('dog_show', {id: dog.id}) }}" title="{{ 'action.view'|trans }}" id="view-btn" style="text-decoration: none"><h5 class="card-title" id="dog-card-title">{{ dog.name }}</h5></a>
                     </div>
+                    <p>{{ 'label.about_me'|trans }}</p>
                     <p>
                         <a href="{{ url('dog_index', {'filters.breed_id' : dog.breed.id}) }}" title="{{ dog.breed.id }}">{{ dog.breed.name }}</a>
                         <a href="{{ url('dog_index', {'filters.size_id' : dog.size.id}) }}" title="{{ dog.size.id }}">{{ dog.size.name }}</a>

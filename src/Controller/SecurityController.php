@@ -163,7 +163,7 @@ class SecurityController extends AbstractController
                 $this->translator->trans('message.registered_successfully')
             );
 
-            return $this->redirectToRoute('dog_index');
+            return $this->redirectToRoute('app_login');
         }
 
         return $this->render(

@@ -373,6 +373,38 @@
         <source>title.admin_panel</source>
         <target>Admin panel</target>
       </trans-unit>
+      <trans-unit id="title.info">
+        <source>title.info</source>
+        <target>About us</target>
+      </trans-unit>
+      <trans-unit id="label.owner">
+        <source>label.owner</source>
+        <target>Owner's email</target>
+      </trans-unit>
+      <trans-unit id="label.about_me">
+        <source>label.about_me</source>
+        <target>About me:</target>
+      </trans-unit>
+      <trans-unit id="title.user_delete">
+        <source>title.user_delete</source>
+        <target>Delete user %id%?</target>
+      </trans-unit>
+      <trans-unit id="title.my_dog_list">
+        <source>title.my_dog_list</source>
+        <target>My animal's list</target>
+      </trans-unit>
+      <trans-unit id="action.view_my_animals">
+        <source>action.view_my_animals</source>
+        <target>My animals</target>
+      </trans-unit>
+      <trans-unit id="message.add">
+        <source>message.add</source>
+        <target>Add</target>
+      </trans-unit>
+      <trans-unit id="message.empty_my_dog_list">
+        <source>message.empty_my_dog_list</source>
+        <target>Your dog list is empty.</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

@@ -23,6 +23,8 @@
                             <dd>{{ dog.size }}</dd>
                             <dt>{{ 'label.description'|trans }}</dt>
                             <dd>{{  dog.description }}</dd>
+                            <dt>{{ 'label.owner'|trans }}</dt>
+                            <dd>{{ dog.author }}</dd>
                         </div>
                     </div>
                 </div>
@@ -40,6 +42,11 @@
             {% if is_granted('EDIT', dog) %}
                 <div class="roow" id="dog-index-btn">
                     <a role="button" id="view-btn" class="btn btn-info btn-sm" href="{{ url('dog_edit', {id: dog.id}) }}" title="{{ 'action.edit'|trans }}">{{ 'action.edit'|trans }}</a>
+                </div>
+            {% endif %}<br><br>
+            {% if is_granted('DELETE', dog) %}
+                <div class="roow" id="dog-index-btn">
+                    <a role="button" id="view-btn" class="btn btn-info btn-sm" href="{{ url('dog_delete', {id: dog.id}) }}" title="{{ 'action.delete'|trans }}">{{ 'action.delete'|trans }}</a>
                 </div>
             {% endif %}
 
