@@ -20,6 +20,9 @@
                     <a role="button" class="btn btn-outline-secondary" href="{{ url('user_edit', {id: app.user.id}) }}" title="{{ 'action.edit'|trans }}">
                         {{ 'action.edit'|trans }}
                     </a>
+                    <a role="button" class="btn btn-outline-secondary" href="{{ url('app_change-password', {id: app.user.id}) }}" title="{{ 'action.password_change'|trans }}">
+                        {{ 'action.password_change'|trans }}
+                    </a>
                 </div>
             </div>
         {% else %}

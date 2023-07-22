@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ 'title.admin_panel'|trans }}
+{% endblock %}
+
+{% block body %}
+    <h1 class="display-3">{{ 'title.admin_panel'|trans }}</h1>
+    <div class="d-flex justify-content-center flex-wrap" id="display-container">
+        <div class="card" id="admin-card">
+            <div class="card-header">
+                {{ 'title.record_list_dog'|trans }}
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    <a id="admin-link" href="{{ url('dog_index') }}">{{ 'action.view'|trans }}</a>
+                </li>
+                <li class="list-group-item" id="bottom">
+                    <a id="admin-link" href="{{ url('dog_create') }}">{{ 'action.create'|trans }}</a>
+                </li>
+            </ul>
+        </div>
+        <div class="card" id="admin-card">
+            <div class="card-header">
+                {{ 'title.record_list_breed'|trans }}
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    <a id="admin-link" href="{{ url('breed_index') }}">{{ 'action.view'|trans }}</a>
+                </li>
+                <li class="list-group-item" id="bottom">
+                    <a id="admin-link" href="{{ url('breed_create') }}">{{ 'action.create'|trans }}</a>
+                </li>
+            </ul>
+        </div>
+        <div class="card" id="admin-card">
+            <div class="card-header">
+                {{ 'title.record_list_size'|trans }}
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    <a id="admin-link" href="{{ url('size_index') }}">{{ 'action.view'|trans }}</a>
+                </li>
+                <li class="list-group-item" id="bottom">
+                    <a id="admin-link" href="{{ url('size_create') }}">{{ 'action.create'|trans }}</a>
+                </li>
+            </ul>
+        </div>
+        <div class="card" id="admin-card">
+            <div class="card-header">
+                {{ 'title.record_list_gender'|trans }}
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    <a id="admin-link" href="{{ url('gender_index') }}">{{ 'action.view'|trans }}</a>
+                </li>
+                <li class="list-group-item" id="bottom">
+                    <a id="admin-link" href="{{ url('gender_create') }}">{{ 'action.create'|trans }}</a>
+                </li>
+            </ul>
+        </div>
+        <div class="card" id="admin-card">
+            <div class="card-header">
+                {{ 'title.record_list_user'|trans }}
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    <a id="admin-link" href="{{ url('user_index') }}">{{ 'action.view'|trans }}</a>
+                </li>
+            </ul>
+        </div>
+
+{% endblock %}

@@ -34,33 +34,21 @@
                                 <a class="dropdown-item" href="{{ url('dog_index') }}">{{ 'action.browse'|trans }}</a>
                                 <a class="dropdown-item" href="{{ url('dog_create') }}">{{ 'action.create'|trans }}</a>
                             </div>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                {{ 'title.manage_account'|trans }}
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item" href="{{ url('user_account', {id: app.user.id}) }}">{{ 'action.account'|trans }}</a>
-                                <a class="dropdown-item" href="{{ url('app_change-password', {id: app.user.id}) }}">{{ 'action.password_change'|trans }}</a>
-                            </div>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('user_account', {id: app.user.id}) }}">{{ 'title.manage_account'|trans }}</a>
                         </li>
                         {% if is_granted('ROLE_ADMIN') %}
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    {{ 'title.admin_panel'|trans }}
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                    <a class="dropdown-item" href="{{ url('breed_index') }}">{{ 'title.breeds'|trans }}</a>
-                                    <a class="dropdown-item" href="{{ url('gender_index') }}">{{ 'title.genders'|trans }}</a>
-                                    <a class="dropdown-item" href="{{ url('size_index') }}">{{ 'title.sizes'|trans }}</a>
-                                    <a class="dropdown-item" href="{{ url('user_index') }}">{{ 'title.users'|trans }}</a>
-                                </div>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url('app_admin') }}">{{ 'title.admin_panel'|trans }}</a>
                             </li>
                         {% endif %}
                         <li class="nav-item">
                             <a class="btn btn-secondary" role="button" href="{{ url('app_logout') }}">{{ 'action.logout'|trans }}</a>
                         </li>
                     {% else %}
-                        <a class="nav-link" href="{{ url('dog_index') }}">{{ 'title.dog_list'|trans }}</a>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('dog_index') }}">{{ 'title.dogs'|trans }}</a>
+                        </li>
                         <li class="nav-item" id="btn-nav">
                             <a class="btn btn-secondary" role="button" href="{{ url('app_login') }}">{{ 'action.login'|trans }}</a>
                         </li>

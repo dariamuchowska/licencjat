@@ -405,6 +405,34 @@
         <source>message.empty_my_dog_list</source>
         <target>Your dog list is empty.</target>
       </trans-unit>
+      <trans-unit id="title.pics">
+        <source>title.pics</source>
+        <target>Pictures</target>
+      </trans-unit>
+      <trans-unit id="title.record_list_dog">
+        <source>title.record_list_dog</source>
+        <target>List of dogs</target>
+      </trans-unit>
+      <trans-unit id="title.record_list_breed">
+        <source>title.record_list_breed</source>
+        <target>List of breeds</target>
+      </trans-unit>
+      <trans-unit id="title.record_list_size">
+        <source>title.record_list_size</source>
+        <target>List of sizes</target>
+      </trans-unit>
+      <trans-unit id="title.record_list_gender">
+        <source>title.record_list_gender</source>
+        <target>List of genders</target>
+      </trans-unit>
+      <trans-unit id="message.user_not_found">
+        <source>message.user_not_found</source>
+        <target>User not found.</target>
+      </trans-unit>
+      <trans-unit id="message.contains_inputs">
+        <source>message.contains_inputs</source>
+        <target>Can't delete - this user contains dogs.</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

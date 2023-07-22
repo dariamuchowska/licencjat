@@ -5,12 +5,12 @@
 {% endblock %}
 
 {% block body %}
-    <h1>{{ 'title.breed_list'|trans }}</h1>
-
-    <div class="col-1">
-        <a role="button" class="btn btn-outline-success" id="create-btn" href="{{ url('breed_create') }}" title="{{ 'action.create'|trans }}">{{ 'action.create'|trans }}</a>
+    <div class="row">
+        <h1 class="display-3" id="h1-adm">{{ 'title.breed_list'|trans }}</h1>
+        <div class="col-1">
+            <a role="button" class="btn btn-outline-success" id="create-btn"  href="{{ url('breed_create') }}" title="{{ 'action.create'|trans }}">{{ 'action.create'|trans }}</a>
+        </div>
     </div>
-
 
     {% if pagination is defined and pagination.items|length %}
 

@@ -304,7 +304,7 @@
       </trans-unit>
       <trans-unit id="action.registerq">
         <source>action.register</source>
-        <target>Rejestracja</target>
+        <target>Zarejestruj</target>
       </trans-unit>
       <trans-unit id="message.pass_changed_successfully">
         <source>message.pass_changed_successfully</source>
@@ -405,6 +405,34 @@
       <trans-unit id="message.empty_my_dog_list">
         <source>message.empty_my_dog_list</source>
         <target>Nie masz żadnych ogłoszeń.</target>
+      </trans-unit>
+      <trans-unit id="title.pics">
+        <source>title.pics</source>
+        <target>Grafika</target>
+      </trans-unit>
+      <trans-unit id="title.record_list_dog">
+        <source>title.record_list_dog</source>
+        <target>Lista zwierząt</target>
+      </trans-unit>
+      <trans-unit id="title.record_list_breed">
+        <source>title.record_list_breed</source>
+        <target>Lista ras</target>
+      </trans-unit>
+      <trans-unit id="title.record_list_size">
+        <source>title.record_list_size</source>
+        <target>Lista rozmiarów</target>
+      </trans-unit>
+      <trans-unit id="title.record_list_gender">
+        <source>title.record_list_gender</source>
+        <target>Lista płci</target>
+      </trans-unit>
+      <trans-unit id="message.user_not_found">
+        <source>message.user_not_found</source>
+        <target>Nie ma takiego użytkownika</target>
+      </trans-unit>
+      <trans-unit id="message.contains_inputs">
+        <source>message.contains_inputs</source>
+        <target>Nie można usunąć - użytkownik posiada ogłoszenia.</target>
       </trans-unit>
     </body>
   </file>
